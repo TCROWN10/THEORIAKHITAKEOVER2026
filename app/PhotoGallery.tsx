@@ -117,7 +117,7 @@ function GalleryImage({ src, caption }: { src: string; caption: string }) {
   }, [src, fileName]);
 
   return (
-    <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg border-2 border-foreground/10 group">
+    <div className="relative w-full aspect-[3/4] overflow-hidden rounded-lg border-2 border-foreground/10 bg-foreground/10 group">
       {error ? (
         <div
           className="absolute inset-0 bg-pink-light/30 flex items-center justify-center p-3"
@@ -134,6 +134,7 @@ function GalleryImage({ src, caption }: { src: string; caption: string }) {
             src={src}
             alt={caption}
             fill
+            loading="eager"
             className="object-cover transition-transform duration-1000 ease-out motion-reduce:transition-none sm:group-hover:scale-105"
             sizes="(max-width: 639px) 100vw, (max-width: 1023px) 33vw, (max-width: 1279px) 25vw, 22vw"
             onError={handleError}
@@ -147,7 +148,7 @@ function GalleryImage({ src, caption }: { src: string; caption: string }) {
             <DownloadIcon className="h-5 w-5" />
           </button>
           {/* Caption only on hover (sm+); hidden on small phones — download icon always visible */}
-          <div className="pointer-events-none absolute inset-0 z-10 hidden flex-col justify-end bg-linear-to-t from-black/80 via-black/35 to-transparent opacity-0 transition-opacity duration-700 ease-out max-sm:hidden sm:flex sm:opacity-0 sm:group-hover:opacity-100 motion-reduce:transition-none motion-reduce:opacity-0 motion-reduce:group-hover:opacity-100">
+          <div className="pointer-events-none absolute inset-0 z-10 flex flex-col justify-end bg-linear-to-t from-black/80 via-black/35 to-transparent opacity-0 transition-opacity duration-700 ease-out group-hover:opacity-100 group-focus-within:opacity-100 motion-reduce:transition-none">
             <p className="gallery-caption-text max-w-[95%] px-4 pb-6 text-center font-serif text-base italic leading-relaxed text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] sm:text-lg md:text-xl">
               {caption}
             </p>
@@ -168,7 +169,7 @@ function GalleryGrid({
 }) {
   return (
     <ul
-      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 list-none p-0 m-0 w-full h-full bg-background"
+      className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-2.5 sm:gap-3 md:gap-4 list-none p-0 m-0 w-full h-full bg-transparent"
       role="list"
     >
       {items.map((item, idx) => (
@@ -176,7 +177,7 @@ function GalleryGrid({
           {rollKey !== undefined ? (
             <div
               key={`${rollKey}-${item.key}`}
-              className="gallery-spotlight-roll origin-center will-change-transform [transform-style:preserve-3d]"
+              className="gallery-spotlight-roll origin-center will-change-transform"
               style={{ animationDelay: `${idx * ROLL_STAGGER_MS}ms` }}
             >
               <GalleryImage src={item.src} caption={item.caption} />
@@ -328,7 +329,7 @@ export default function PhotoGallery() {
   return (
     <div className="w-full">
       {mode === "grid" ? (
-        <div className="relative w-full overflow-hidden rounded-xl bg-background">
+        <div className="relative w-full overflow-hidden rounded-xl bg-foreground/10">
           <div className="relative z-0">
             <GalleryGrid items={baseItems} />
           </div>
@@ -345,7 +346,7 @@ export default function PhotoGallery() {
           ) : null}
         </div>
       ) : (
-        <div className="relative w-full overflow-hidden rounded-xl bg-background">
+        <div className="relative w-full overflow-hidden rounded-xl bg-foreground/10">
           <GalleryGrid items={spotlightGridItems} rollKey={spotlightIndex} />
         </div>
       )}

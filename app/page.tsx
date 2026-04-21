@@ -194,7 +194,7 @@ export default function Home() {
           </div>
           <div className="w-full sm:w-1/2 flex justify-center sm:justify-start pl-0 sm:pl-4 mt-6 sm:mt-0 relative z-10">
             <div className="w-full max-w-[240px] rounded-2xl border border-accent-green/60 bg-white/50 py-6 px-6 text-center shadow-sm">
-              <p className="text-accent-green text-sm font-light tracking-[0.2em] uppercase mb-2">
+              <p className="text-pink-light text-sm font-light tracking-[0.2em] uppercase mb-2">
                 Traditional
               </p>
               <p className="font-serif text-3xl md:text-4xl font-semibold text-foreground">
@@ -221,15 +221,6 @@ export default function Home() {
           </cite>
         </blockquote>
 
-        {/* Bottom decorative L-shaped corners */}
-        <div
-          className="absolute bottom-0 left-0 w-16 h-16 border-l border-b border-pink-light rounded-br-lg"
-          aria-hidden
-        />
-        <div
-          className="absolute bottom-0 right-3 w-16 h-16 border-r border-b border-pink-light rounded-bl-lg"
-          aria-hidden
-        />
       </section>
 
       {/* Join Us On Our Special Days - Schedule */}
@@ -544,7 +535,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xl">
           <div className="w-full max-w-[260px] rounded-2xl bg-white/80 shadow-sm py-5 px-5 text-center">
-            <p className="font-serif text-foreground font-medium">Consulate Whyte</p>
+            <p className="font-serif text-foreground font-medium">Consulata Whyte</p>
             <a
               href="tel:+2347064180314"
               className="mt-2 inline-flex items-center justify-center gap-2 text-text-muted text-base font-light hover:text-foreground transition-colors"

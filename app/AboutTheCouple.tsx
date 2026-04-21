@@ -76,24 +76,11 @@ function useRevealOnScroll() {
       return;
     }
 
-    const showIfInView = () => {
-      const r = el.getBoundingClientRect();
-      const vh = window.innerHeight;
-      const margin = vh * 0.15;
-      if (r.bottom > margin && r.top < vh - margin) {
-        setVisible(true);
-        return true;
-      }
-      return false;
-    };
-
-    if (showIfInView()) return;
-
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
+        setVisible(entry.isIntersecting);
       },
-      { threshold: 0.05, rootMargin: "0px 0px 10% 0px" }
+      { threshold: 0.15, rootMargin: "0px 0px -8% 0px" }
     );
     obs.observe(el);
     return () => obs.disconnect();
@@ -170,63 +157,67 @@ export default function AboutTheCouple() {
             </RevealOnScroll>
           </div>
           <div className="min-w-0 self-start text-left">
-            <h3
-              className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
-            >
-              Whyte Ibierebo Sunjuye
-            </h3>
-            <p className="mb-0 text-base font-bold leading-tight text-foreground">
-              To my darling woman,
-            </p>
-            <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
-              <p>
-                <span className="font-semibold text-foreground">The</span> one I have chosen to spend
-                my entire life with… <br /> Words will never truly be enough to express how <br /> much you mean to
-                me. My love for you goes beyond <br /> What i can say it is something I feel deeply every
-                Single day.
+            <RevealOnScroll from="right">
+              <h3
+                className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
+              >
+                Whyte Ibierebo Sunjuye
+              </h3>
+              <p className="mb-0 text-base font-bold leading-tight text-foreground">
+                To my darling woman,
               </p>
-              <p>
-                I am endlessly grateful to have you by my side. <br /> Loving you has been one of the
-                greatest <br /> blessings of my life, and I am so certain, so happy,<br /> and so at peace knowing
-                that I get to do forever with you. <br />You don&apos;t just complete me, you bring light,
-                meaning, <br /> and joy into every part of my life. <br /> With you, everything feels right,
-                everything feels whole.
-              </p>
-              <p>
-                You are not just my other half…you are my answered prayer, my safe place, my best
-                friend, and my forever after. I promise to love you, stand by you, grow with you, and
-                choose you over and over again for the rest of my life.
-              </p>
-              <p className="font-medium text-foreground">Forever yours. 💕</p>
-            </div>
+              <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
+                <p>
+                  <span className="font-semibold text-foreground">The</span> one I have chosen to spend
+                  my entire life with… <br /> Words will never truly be enough to express how <br /> much you mean to
+                  me. My love for you goes beyond <br /> What i can say it is something I feel deeply every
+                  Single day.
+                </p>
+                <p>
+                  I am endlessly grateful to have you by my side. <br /> Loving you has been one of the
+                  greatest <br /> blessings of my life, and I am so certain, so happy,<br /> and so at peace knowing
+                  that I get to do forever with you. <br />You don&apos;t just complete me, you bring light,
+                  meaning, <br /> and joy into every part of my life. <br /> With you, everything feels right,
+                  everything feels whole.
+                </p>
+                <p>
+                  You are not just my other half…you are my answered prayer, my safe place, my best
+                  friend, and my forever after. I promise to love you, stand by you, grow with you, and
+                  choose you over and over again for the rest of my life.
+                </p>
+                <p className="font-medium text-foreground">Forever yours. 💕</p>
+              </div>
+            </RevealOnScroll>
           </div>
         </div>
 
         {/* Row 2 — letter left, image right (image first on small screens) */}
         <div className="mt-14 grid grid-cols-1 items-start gap-8 md:mt-20 md:grid-cols-2 md:items-start md:gap-10 lg:gap-12">
           <div className="order-2 min-w-0 self-start text-left md:order-1">
-            <h3
-              className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
-            >
-              Damilola Daniel Adeleye
-            </h3>
-            <p className="mb-0 text-base font-bold leading-tight text-foreground">
-              My dearest Man,
-            </p>
-            <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
-              <p>
-                <span className="font-semibold text-foreground">Loving</span> you has been the most
-                beautiful part of my life. <br /> You bring me peace, joy, and a kind of happiness <br /> I never knew
-                I needed.
+            <RevealOnScroll from="left">
+              <h3
+                className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
+              >
+                Damilola Daniel Adeleye
+              </h3>
+              <p className="mb-0 text-base font-bold leading-tight text-foreground">
+                My dearest Man,
               </p>
-              <p>
-                Every day with you feels like a blessing,<br /> and I can&apos;t wait to spend forever by your
-                side.<br /> You are my greatest gift. With you,<br /> I have found love, friendship, and a home.
-                <br />Choosing you is the easiest <br /> decision I&apos;ve ever made, <br />and I look forward to a
-                lifetime of <br /> loving you more each day.
-              </p>
-              <p className="font-medium text-foreground">I love you every second❤️</p>
-            </div>
+              <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
+                <p>
+                  <span className="font-semibold text-foreground">Loving</span> you has been the most
+                  beautiful part of my life. <br /> You bring me peace, joy, and a kind of happiness <br /> I never knew
+                  I needed.
+                </p>
+                <p>
+                  Every day with you feels like a blessing,<br /> and I can&apos;t wait to spend forever by your
+                  side.<br /> You are my greatest gift. With you,<br /> I have found love, friendship, and a home.
+                  <br />Choosing you is the easiest <br /> decision I&apos;ve ever made, <br />and I look forward to a
+                  lifetime of <br /> loving you more each day.
+                </p>
+                <p className="font-medium text-foreground">I love you every second❤️</p>
+              </div>
+            </RevealOnScroll>
           </div>
           <div className="order-1 self-start md:order-2">
             <RevealOnScroll from="right">

@@ -12,18 +12,18 @@ const playfair = Playfair_Display({
 const ui = DM_Sans({ subsets: ["latin"], weight: ["600", "700", "800"] });
 
 const HERO_FRAMES = [
-  { src: "/ARONN-0890.jpg", className: "scale-[1.45] object-[center_16%] sm:scale-[1.35] sm:object-[center_18%] md:object-[center_18%]" },
-  { src: "/ARONN-0900.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:object-[center_18%]" },
-  { src: "/ARONN-0968.jpg", className: "scale-[1.4] object-[center_14%] sm:scale-[1.3] sm:object-[center_16%] md:object-[center_16%]" },
-  { src: "/ARONN-0992.jpg", className: "scale-[1.46] object-[center_19%] sm:scale-[1.36] sm:object-[center_20%] md:object-[center_20%]" },
-  { src: "/ARONN-1086.jpg", className: "scale-[1.43] object-[center_15%] sm:scale-[1.33] sm:object-[center_16%] md:object-[center_16%]" },
-  { src: "/ARONN-1179.jpg", className: "scale-[1.44] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:object-[center_18%]" },
-  { src: "/ARONN-1162.jpg", className: "scale-[1.45] object-[center_18%] sm:scale-[1.35] sm:object-[center_20%] md:object-[center_19%]" },
-  { src: "/ARONN-1223.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:object-[center_19%]" },
-  { src: "/ARONN-1361.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.32] sm:object-[center_18%] md:object-[center_18%]" },
-  { src: "/ARONN-1382.jpg", className: "scale-[1.45] object-[center_19%] sm:scale-[1.35] sm:object-[center_21%] md:object-[center_20%]" },
-  { src: "/ARONN-1390.jpg", className: "scale-[1.44] object-[center_16%] sm:scale-[1.34] sm:object-[center_18%] md:object-[center_18%]" },
-  { src: "/ARONN-1398.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:object-[center_19%]" },
+  { src: "/ARONN-0890.jpg", className: "scale-[1.45] object-[center_16%] sm:scale-[1.35] sm:object-[center_18%] md:scale-[1.1] md:object-[center_7%] lg:scale-[1.13] lg:object-[center_8%]" },
+  { src: "/ARONN-0900.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:scale-[1.1] md:object-[center_8%] lg:scale-[1.13] lg:object-[center_9%]" },
+  { src: "/ARONN-0968.jpg", className: "scale-[1.4] object-[center_14%] sm:scale-[1.3] sm:object-[center_16%] md:scale-[1.08] md:object-[center_6%] lg:scale-[1.11] lg:object-[center_7%]" },
+  { src: "/ARONN-0992.jpg", className: "scale-[1.46] object-[center_19%] sm:scale-[1.36] sm:object-[center_20%] md:scale-[1.12] md:object-[center_9%] lg:scale-[1.15] lg:object-[center_10%]" },
+  { src: "/ARONN-1086.jpg", className: "scale-[1.43] object-[center_15%] sm:scale-[1.33] sm:object-[center_16%] md:scale-[1.09] md:object-[center_6%] lg:scale-[1.12] lg:object-[center_7%]" },
+  { src: "/ARONN-1179.jpg", className: "scale-[1.44] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:scale-[1.1] md:object-[center_8%] lg:scale-[1.13] lg:object-[center_9%]" },
+  { src: "/ARONN-1162.jpg", className: "scale-[1.45] object-[center_18%] sm:scale-[1.35] sm:object-[center_20%] md:scale-[1.11] md:object-[center_9%] lg:scale-[1.14] lg:object-[center_10%]" },
+  { src: "/ARONN-1223.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:scale-[1.1] md:object-[center_9%] lg:scale-[1.13] lg:object-[center_10%]" },
+  { src: "/ARONN-1361.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.32] sm:object-[center_18%] md:scale-[1.09] md:object-[center_8%] lg:scale-[1.12] lg:object-[center_9%]" },
+  { src: "/ARONN-1382.jpg", className: "scale-[1.45] object-[center_19%] sm:scale-[1.35] sm:object-[center_21%] md:scale-[1.11] md:object-[center_10%] lg:scale-[1.14] lg:object-[center_11%]" },
+  { src: "/ARONN-1390.jpg", className: "scale-[1.44] object-[center_16%] sm:scale-[1.34] sm:object-[center_18%] md:scale-[1.1] md:object-[center_7%] lg:scale-[1.13] lg:object-[center_8%]" },
+  { src: "/ARONN-1398.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:scale-[1.1] md:object-[center_9%] lg:scale-[1.13] lg:object-[center_10%]" },
 ] as const;
 
 /**
@@ -161,7 +161,7 @@ export default function HeroSection() {
             className={`${playfair.className} flex items-baseline gap-1 text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-[1.85rem] lg:text-4xl`}
           >
             <span className="font-black">I</span>
-            <span className="translate-y-px text-base font-black text-pink sm:text-lg md:text-xl lg:text-2xl">
+            <span className="translate-y-px text-base font-black text-[#800000] sm:text-lg md:text-xl lg:text-2xl">
               &amp;
             </span>
             <span className="font-black">D</span>

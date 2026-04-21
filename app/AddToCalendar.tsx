@@ -22,7 +22,7 @@ export default function AddToCalendar() {
       type="button"
       onClick={handleClick}
       aria-label="Download wedding calendar file (White wedding and Traditional wedding)"
-      className="calendar-button-dance mt-8 inline-flex items-center justify-center rounded-full bg-pink text-white px-8 py-3 text-base font-light tracking-wide shadow-sm hover:opacity-90 transition-opacity"
+      className="calendar-button-dance mt-8 inline-flex items-center justify-center rounded-full bg-pink text-white px-8 py-3 text-base font-bold tracking-wide shadow-sm hover:opacity-90 transition-opacity"
     >
       Add to Calendar
     </button>
