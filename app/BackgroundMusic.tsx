@@ -33,7 +33,10 @@ export default function BackgroundMusic() {
     el.addEventListener("ended", onEnded);
 
     /** Browsers often block autoplay without a gesture — retry + unlock on first interaction. */
-    const attempt = () => tryPlay().catch(() => {});
+    const attempt = () =>
+      tryPlay().catch(() => {
+        setNeedsUserPlay(true);
+      });
 
     attempt();
     const t1 = setTimeout(attempt, 150);
@@ -58,9 +61,7 @@ export default function BackgroundMusic() {
     };
     document.addEventListener("visibilitychange", onVis);
 
-    attempt().catch(() => {
-      setNeedsUserPlay(true);
-    });
+    attempt();
 
     return () => {
       clearTimeout(t1);
