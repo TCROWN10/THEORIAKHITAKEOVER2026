@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import BackgroundMusic from "./BackgroundMusic";
 
 export const metadata: Metadata = {
-  title: "Rebecca & Timothy | We're Getting Married",
-  description: "Wedding invitation for Rebecca Oluwaseyi Aiyela & Timothy Olarewaju Adeoye",
+  title: "Ibierebo & Damilola | IDLoveStory",
+  description:
+    "Wedding invitation for Ibierebo & Damilola — A celebration of love, faith, and friendship.",
 };
 
 export default function RootLayout({
@@ -22,6 +24,7 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased font-sans">
+        <BackgroundMusic />
         {children}
       </body>
     </html>

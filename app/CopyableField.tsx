@@ -42,7 +42,7 @@ export default function CopyableField({
     <div
       className={`flex items-center justify-between gap-2 rounded-lg bg-white/60 border border-pink-light/50 py-2.5 px-3 ${className}`}
     >
-      <span className="text-foreground text-sm font-light truncate flex-1 min-w-0">{value}</span>
+      <span className="text-foreground text-base font-light truncate flex-1 min-w-0">{value}</span>
       <button
         type="button"
         onClick={handleCopy}

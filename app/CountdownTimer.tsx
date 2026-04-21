@@ -1,8 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { WEDDING_COUNTDOWN_UTC } from "@/lib/wedding-calendar";
 
-const WEDDING_DATE = new Date("2026-03-28T10:00:00"); // March 28, 2026, 10:00 AM
+const WEDDING_DATE = WEDDING_COUNTDOWN_UTC;
 
 function pad(n: number) {
   return n.toString().padStart(2, "0");
@@ -38,13 +39,16 @@ export default function CountdownTimer() {
       <div className="flex items-center justify-center gap-2 sm:gap-3">
         {["DAYS", "HOURS", "MINUTES", "SECONDS"].map((label, i) => (
           <div key={label} className="flex items-center gap-2 sm:gap-3">
-            <div className="w-14 sm:w-20 rounded-xl bg-white/80 shadow-sm py-4 px-2 flex flex-col items-center">
-              <span className="font-serif text-2xl sm:text-3xl font-semibold text-foreground">--</span>
-              <span className="text-pink text-[10px] sm:text-xs font-light tracking-widest uppercase mt-1">
+            <div
+              className="countdown-attention w-16 sm:w-24 rounded-xl bg-white/80 shadow-sm py-4 px-2 flex flex-col items-center"
+              style={{ animationDelay: `${i * 140}ms` }}
+            >
+              <span className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">--</span>
+              <span className="text-pink text-xs sm:text-sm font-light tracking-widest uppercase mt-1">
                 {label}
               </span>
             </div>
-            {i < 3 && <span className="text-text-muted/50 text-lg">·</span>}
+            {i < 3 && <span className="text-text-muted/50 text-xl">·</span>}
           </div>
         ))}
       </div>
@@ -60,15 +64,18 @@ export default function CountdownTimer() {
         { value: diff.seconds, label: "SECONDS" },
       ].map(({ value, label }, i) => (
         <div key={label} className="flex items-center gap-2 sm:gap-3">
-          <div className="w-14 sm:w-20 rounded-xl bg-white/80 shadow-sm py-4 px-2 flex flex-col items-center">
-            <span className="font-serif text-2xl sm:text-3xl font-semibold text-foreground">
+          <div
+            className="countdown-attention w-16 sm:w-24 rounded-xl bg-white/80 shadow-sm py-4 px-2 flex flex-col items-center"
+            style={{ animationDelay: `${i * 140}ms` }}
+          >
+            <span className="font-serif text-3xl sm:text-4xl font-semibold text-foreground">
               {label === "DAYS" ? value : pad(value)}
             </span>
-            <span className="text-pink text-[10px] sm:text-xs font-light tracking-widest uppercase mt-1">
+            <span className="text-pink text-xs sm:text-sm font-light tracking-widest uppercase mt-1">
               {label}
             </span>
           </div>
-          {i < 3 && <span className="text-text-muted/50 text-lg">·</span>}
+          {i < 3 && <span className="text-text-muted/50 text-xl">·</span>}
         </div>
       ))}
     </div>

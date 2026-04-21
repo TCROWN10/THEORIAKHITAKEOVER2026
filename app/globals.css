@@ -10,6 +10,10 @@
   --accent-green: #a8c4b0;
 }
 
+html {
+  font-size: 110%;
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -26,4 +30,263 @@ body {
   color: var(--foreground);
   font-family: var(--font-sans);
   min-height: 100vh;
+}
+
+/* Clickable controls — consistent pointer cursor */
+button,
+a[href],
+[role="button"]:not([aria-disabled="true"]),
+label[for],
+summary {
+  cursor: pointer;
+}
+
+button:disabled,
+[role="button"][aria-disabled="true"],
+a[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
+@keyframes gallery-spotlight-roll {
+  0% {
+    transform: perspective(1100px) rotateY(-76deg);
+    opacity: 0.35;
+  }
+  100% {
+    transform: perspective(1100px) rotateY(0deg);
+    opacity: 1;
+  }
+}
+
+.gallery-spotlight-roll {
+  animation: gallery-spotlight-roll 1.75s cubic-bezier(0.2, 0.9, 0.28, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gallery-spotlight-roll {
+    animation: none;
+    animation-delay: 0s !important;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@keyframes hero-image-rise {
+  from {
+    transform: translateY(14%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.hero-image-rise {
+  animation: hero-image-rise 1.15s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image-rise {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Hero — circular iris reveal (same full-bleed image, different entrance) */
+@keyframes hero-circle-reveal {
+  from {
+    clip-path: circle(0% at 50% 50%);
+  }
+  to {
+    /* Large enough radius to clear all corners on any aspect ratio */
+    clip-path: circle(150% at 50% 50%);
+  }
+}
+
+.hero-image-circle {
+  animation: hero-circle-reveal 1.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  will-change: clip-path;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-image-circle {
+    animation: none;
+    clip-path: none;
+    opacity: 1;
+  }
+}
+
+/* Hero — slide whole frame in from edges */
+@keyframes hero-slide-left {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-slide-right {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes hero-slide-bottom {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-slide-top {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.hero-slide-left {
+  animation: hero-slide-left 1.12s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-slide-right {
+  animation: hero-slide-right 1.12s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-slide-bottom {
+  animation: hero-slide-bottom 1.12s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.hero-slide-top {
+  animation: hero-slide-top 1.12s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-slide-left,
+  .hero-slide-right,
+  .hero-slide-bottom,
+  .hero-slide-top {
+    animation: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* Down-pointing “V”: bounces straight down (no rotate) so it always reads as ↓ while dancing */
+@keyframes hero-arrow-dance {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  18% {
+    transform: translateY(6px);
+  }
+  36% {
+    transform: translateY(0);
+  }
+  52% {
+    transform: translateY(11px);
+  }
+  68% {
+    transform: translateY(3px);
+  }
+  84% {
+    transform: translateY(9px);
+  }
+}
+
+.hero-scroll-arrow {
+  display: inline-flex;
+  transform-origin: center top;
+  animation: hero-arrow-dance 1.15s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll-arrow {
+    animation: none;
+  }
+}
+
+@keyframes countdown-attention-shake {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+  8% {
+    transform: translate3d(-3px, 0, 0) rotate(-1.1deg) scale(1.02);
+  }
+  16% {
+    transform: translate3d(3px, 0, 0) rotate(1.1deg) scale(1.02);
+  }
+  24% {
+    transform: translate3d(-4px, -1px, 0) rotate(-1.4deg) scale(1.03);
+  }
+  32% {
+    transform: translate3d(4px, 1px, 0) rotate(1.4deg) scale(1.03);
+  }
+  40% {
+    transform: translate3d(-2px, 0, 0) rotate(-0.8deg) scale(1.02);
+  }
+  48% {
+    transform: translate3d(2px, 0, 0) rotate(0.8deg) scale(1.02);
+  }
+  60% {
+    transform: translate3d(0, -3px, 0) rotate(0deg) scale(1.04);
+  }
+  72% {
+    transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+  }
+}
+
+.countdown-attention {
+  transform-origin: center;
+  will-change: transform;
+  animation: countdown-attention-shake 1.55s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .countdown-attention {
+    animation: none;
+  }
+}
+
+/* Add to Calendar — gentle “dance” */
+@keyframes calendar-button-dance {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  15% {
+    transform: translateY(-4px) rotate(-2deg);
+  }
+  30% {
+    transform: translateY(0) rotate(2deg);
+  }
+  45% {
+    transform: translateY(-3px) rotate(-1deg);
+  }
+  60% {
+    transform: translateY(0) rotate(1deg);
+  }
+  75% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+}
+
+.calendar-button-dance {
+  animation: calendar-button-dance 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .calendar-button-dance {
+    animation: none;
+  }
 }
