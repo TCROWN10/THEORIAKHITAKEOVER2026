@@ -16,7 +16,7 @@ function SectionDivider() {
   return (
     <div className="mx-auto mb-8 w-full max-w-md md:mb-10" aria-hidden>
       <svg
-        className="h-8 w-full text-pink-light"
+        className="h-8 w-full text-[#D4AF37]"
         viewBox="0 0 420 42"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
