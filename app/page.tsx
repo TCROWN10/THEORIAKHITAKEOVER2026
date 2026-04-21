@@ -151,9 +151,9 @@ export default function Home() {
             aria-hidden
           />
           <div className="w-full sm:w-1/2 flex justify-center sm:justify-end pr-0 sm:pr-4 relative z-10">
-            <div className="w-full max-w-[240px] rounded-2xl border border-accent-green/60 bg-white/50 py-6 px-6 text-center shadow-sm">
-              <p className="text-accent-green text-sm font-light tracking-[0.2em] uppercase mb-2">
-                Traditional
+            <div className="w-full max-w-[240px] rounded-2xl border-2 border-pink bg-white/50 py-6 px-6 text-center shadow-sm">
+              <p className="text-pink text-sm font-light tracking-[0.2em] uppercase mb-2">
+                White Wedding
               </p>
               <p className="font-serif text-3xl md:text-4xl font-semibold text-foreground">
                 20th June
@@ -162,9 +162,9 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full sm:w-1/2 flex justify-center sm:justify-start pl-0 sm:pl-4 mt-6 sm:mt-0 relative z-10">
-            <div className="w-full max-w-[240px] rounded-2xl border-2 border-pink bg-white/50 py-6 px-6 text-center shadow-sm">
-              <p className="text-pink text-sm font-light tracking-[0.2em] uppercase mb-2">
-                White Wedding
+            <div className="w-full max-w-[240px] rounded-2xl border border-accent-green/60 bg-white/50 py-6 px-6 text-center shadow-sm">
+              <p className="text-accent-green text-sm font-light tracking-[0.2em] uppercase mb-2">
+                Traditional
               </p>
               <p className="font-serif text-3xl md:text-4xl font-semibold text-foreground">
                 20th June
@@ -229,40 +229,7 @@ export default function Home() {
             <p className="text-text-muted text-base font-light mt-1">June 2026</p>
           </div>
 
-          {/* Top-right: Traditional Wedding */}
-          <div className="rounded-2xl bg-white/80 shadow-sm py-6 px-6 flex flex-col">
-            <HeartOutline className="w-6 h-6 text-accent-green mb-3 shrink-0" />
-            <h3 className="font-serif text-foreground text-xl font-medium">Traditional Wedding</h3>
-            <p className="text-text-muted text-base font-light mt-1 leading-relaxed">
-              A celebration of our rich cultural heritage and traditions.
-            </p>
-            <div className="mt-4 flex items-center gap-2 text-text-muted text-base">
-              <ClockIcon className="w-4 h-4 shrink-0" />
-              <span>1:00 PM</span>
-            </div>
-            <div className="mt-2 flex items-start gap-2 text-base">
-              <MapPinIcon className="w-4 h-4 shrink-0 mt-0.5 text-foreground" />
-              <span>
-                <span className="font-medium text-foreground">Merry Makers Event Center</span>
-                <br />
-                <span className="text-text-muted font-light">
-                  Kashim Ibrahim Way, Wuse II, Abuja
-                </span>
-              </span>
-            </div>
-            <a
-              href={GOOGLE_MAPS_TRADITIONAL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label="Open Google Maps directions to Merry Makers Event Center, Abuja"
-              className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border-2 border-accent-green text-accent-green py-2.5 px-4 text-base font-light w-fit hover:bg-accent-green/10 transition-colors"
-            >
-              <MapPinIcon className="w-4 h-4" />
-              Get Directions
-            </a>
-          </div>
-
-          {/* Bottom-left: White Wedding & Reception */}
+          {/* Top-right: White Wedding & Reception (first) */}
           <div className="rounded-2xl bg-white/80 shadow-sm py-6 px-6 flex flex-col">
             <ChurchIcon className="w-6 h-6 text-pink mb-3 shrink-0" />
             <h3 className="font-serif text-foreground text-xl font-medium">
@@ -291,6 +258,39 @@ export default function Home() {
               rel="noopener noreferrer"
               aria-label="Open Google Maps directions to 185 Ademola Adetokunbo Crescent, Abuja"
               className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border-2 border-pink text-pink py-2.5 px-4 text-base font-light w-fit hover:bg-pink/10 transition-colors"
+            >
+              <MapPinIcon className="w-4 h-4" />
+              Get Directions
+            </a>
+          </div>
+
+          {/* Bottom-left: Traditional Wedding */}
+          <div className="rounded-2xl bg-white/80 shadow-sm py-6 px-6 flex flex-col">
+            <HeartOutline className="w-6 h-6 text-accent-green mb-3 shrink-0" />
+            <h3 className="font-serif text-foreground text-xl font-medium">Traditional Wedding</h3>
+            <p className="text-text-muted text-base font-light mt-1 leading-relaxed">
+              A celebration of our rich cultural heritage and traditions.
+            </p>
+            <div className="mt-4 flex items-center gap-2 text-text-muted text-base">
+              <ClockIcon className="w-4 h-4 shrink-0" />
+              <span>1:00 PM</span>
+            </div>
+            <div className="mt-2 flex items-start gap-2 text-base">
+              <MapPinIcon className="w-4 h-4 shrink-0 mt-0.5 text-foreground" />
+              <span>
+                <span className="font-medium text-foreground">Merry Makers Event Center</span>
+                <br />
+                <span className="text-text-muted font-light">
+                  Kashim Ibrahim Way, Wuse II, Abuja
+                </span>
+              </span>
+            </div>
+            <a
+              href={GOOGLE_MAPS_TRADITIONAL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Open Google Maps directions to Merry Makers Event Center, Abuja"
+              className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border-2 border-accent-green text-accent-green py-2.5 px-4 text-base font-light w-fit hover:bg-accent-green/10 transition-colors"
             >
               <MapPinIcon className="w-4 h-4" />
               Get Directions
@@ -515,7 +515,7 @@ export default function Home() {
         </p>
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-xl">
           <div className="w-full max-w-[260px] rounded-2xl bg-white/80 shadow-sm py-5 px-5 text-center">
-            <p className="font-serif text-foreground font-medium">Consolate Whyte</p>
+            <p className="font-serif text-foreground font-medium">Consulate Whyte</p>
             <a
               href="tel:+2347064180314"
               className="mt-2 inline-flex items-center justify-center gap-2 text-text-muted text-base font-light hover:text-foreground transition-colors"

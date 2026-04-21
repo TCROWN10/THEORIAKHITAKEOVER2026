@@ -2,8 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 
-const AUDIO_SRC =
-  "/Savy-Henry-Your-Smile-Makes-Me-Smile-(CeeNaija.com).mp3";
+const AUDIO_SRC = "/Savy_Henry_-_The_Best_Part_Vistanaij.com_.ng_.mp3";
 
 export default function BackgroundMusic() {
   const audioRef = useRef<HTMLAudioElement>(null);
