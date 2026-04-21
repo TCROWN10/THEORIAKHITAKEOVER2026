@@ -11,19 +11,19 @@ const playfair = Playfair_Display({
 });
 const ui = DM_Sans({ subsets: ["latin"], weight: ["600", "700", "800"] });
 
-const HERO_IMAGES = [
-  "/ARONN-0890.jpg",
-  "/ARONN-0900.jpg",
-  "/ARONN-0968.jpg",
-  "/ARONN-0992.jpg",
-  "/ARONN-1086.jpg",
-  "/ARONN-1179.jpg",
-  "/ARONN-1162.jpg",
-  "/ARONN-1223.jpg",
-  "/ARONN-1361.jpg",
-  "/ARONN-1382.jpg",
-  "/ARONN-1390.jpg",
-  "/ARONN-1398.jpg",
+const HERO_FRAMES = [
+  { src: "/ARONN-0890.jpg", className: "scale-[1.45] object-[center_16%] sm:scale-[1.35] sm:object-[center_18%] md:object-[center_18%]" },
+  { src: "/ARONN-0900.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:object-[center_18%]" },
+  { src: "/ARONN-0968.jpg", className: "scale-[1.4] object-[center_14%] sm:scale-[1.3] sm:object-[center_16%] md:object-[center_16%]" },
+  { src: "/ARONN-0992.jpg", className: "scale-[1.46] object-[center_19%] sm:scale-[1.36] sm:object-[center_20%] md:object-[center_20%]" },
+  { src: "/ARONN-1086.jpg", className: "scale-[1.43] object-[center_15%] sm:scale-[1.33] sm:object-[center_16%] md:object-[center_16%]" },
+  { src: "/ARONN-1179.jpg", className: "scale-[1.44] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:object-[center_18%]" },
+  { src: "/ARONN-1162.jpg", className: "scale-[1.45] object-[center_18%] sm:scale-[1.35] sm:object-[center_20%] md:object-[center_19%]" },
+  { src: "/ARONN-1223.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:object-[center_19%]" },
+  { src: "/ARONN-1361.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.32] sm:object-[center_18%] md:object-[center_18%]" },
+  { src: "/ARONN-1382.jpg", className: "scale-[1.45] object-[center_19%] sm:scale-[1.35] sm:object-[center_21%] md:object-[center_20%]" },
+  { src: "/ARONN-1390.jpg", className: "scale-[1.44] object-[center_16%] sm:scale-[1.34] sm:object-[center_18%] md:object-[center_18%]" },
+  { src: "/ARONN-1398.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:object-[center_19%]" },
 ] as const;
 
 /**
@@ -43,8 +43,7 @@ const HERO_ROTATE_MS = 6000;
 /** Must be ≥ longest hero entrance animation (see globals.css) */
 const HERO_TRANSITION_MS = 1250;
 
-const HERO_IMAGE_CLASS =
-  "origin-center scale-[1.38] object-cover object-[center_18%] sm:scale-[1.32] sm:object-[center_20%] md:object-[center_19%]";
+const HERO_IMAGE_BASE_CLASS = "origin-center object-cover";
 
 const NAV_LINKS = [
   { href: "#", label: "Home" },
@@ -113,7 +112,7 @@ export default function HeroSection() {
   useEffect(() => {
     const interval = setInterval(() => {
       setVisibleIndex((prev) => {
-        const next = (prev + 1) % HERO_IMAGES.length;
+        const next = (prev + 1) % HERO_FRAMES.length;
         const anim =
           HERO_ENTER_TRANSITIONS[next % HERO_ENTER_TRANSITIONS.length];
         setIncomingIndex(next);
@@ -154,28 +153,28 @@ export default function HeroSection() {
   }, [menuOpen]);
 
   return (
-    <section className={`relative flex min-h-screen flex-col bg-white ${ui.className}`}>
+    <section className={`relative flex min-h-screen flex-col bg-background ${ui.className}`}>
       {/* Top bar */}
-      <header className="relative z-30 flex flex-wrap items-center justify-between gap-3 border-b border-pink-light/40 bg-white px-4 py-4 md:px-10 lg:px-14">
+      <header className="relative z-30 flex flex-wrap items-center justify-between gap-3 border-b border-pink-light/40 bg-background px-4 py-4 md:px-10 lg:px-14">
         <a href="#" className="group flex flex-col items-start gap-1">
           <div
-            className={`${playfair.className} flex items-baseline gap-1 text-2xl font-black tracking-tight text-[#16161c] sm:text-3xl md:text-[1.85rem] lg:text-4xl`}
+            className={`${playfair.className} flex items-baseline gap-1 text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-[1.85rem] lg:text-4xl`}
           >
             <span className="font-black">I</span>
-            <span className="translate-y-px text-base font-black text-[#9e4a5c] sm:text-lg md:text-xl lg:text-2xl">
+            <span className="translate-y-px text-base font-black text-pink sm:text-lg md:text-xl lg:text-2xl">
               &amp;
             </span>
             <span className="font-black">D</span>
           </div>
           <span
-            className={`${playfair.className} text-[0.62rem] font-extrabold uppercase tracking-[0.32em] text-[#2a2a32] sm:text-[0.68rem] md:text-xs`}
+            className={`${playfair.className} text-[0.62rem] font-extrabold uppercase tracking-[0.32em] text-foreground sm:text-[0.68rem] md:text-xs`}
           >
             IDLoveStory
           </span>
         </a>
 
         <nav
-          className="hidden flex-wrap items-center justify-end gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-[0.18em] text-[#3a3a44] lg:flex lg:gap-x-7 lg:text-[0.7rem]"
+          className="hidden flex-wrap items-center justify-end gap-x-4 gap-y-2 text-xs font-bold uppercase tracking-[0.18em] text-foreground lg:flex lg:gap-x-7 lg:text-[0.7rem]"
           aria-label="Primary"
         >
           {NAV_LINKS.map((link) => (
@@ -184,8 +183,8 @@ export default function HeroSection() {
               href={link.href}
               className={
                 link.href === "#"
-                  ? "text-[#b76e79] transition-colors hover:text-[#8b4d5c]"
-                  : "transition-colors hover:text-[#b76e79]"
+                  ? "text-pink transition-colors hover:text-pink-light"
+                  : "transition-colors hover:text-pink"
               }
             >
               {link.label}
@@ -195,7 +194,7 @@ export default function HeroSection() {
 
         <button
           type="button"
-          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-pink-light/60 text-[#3a3a44] transition-colors hover:border-pink hover:bg-pink-light/30 lg:hidden"
+          className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg border border-pink-light/60 text-foreground transition-colors hover:border-pink hover:bg-pink-light/30 lg:hidden"
           onClick={() => setMenuOpen((o) => !o)}
           aria-expanded={menuOpen}
           aria-controls="mobile-nav-panel"
@@ -221,16 +220,16 @@ export default function HeroSection() {
           aria-label="Close menu overlay"
         />
         <nav
-          className={`absolute right-0 top-0 flex h-full w-[min(20rem,88vw)] flex-col bg-white shadow-2xl transition-transform duration-300 ease-out ${
+          className={`absolute right-0 top-0 flex h-full w-[min(20rem,88vw)] flex-col bg-background shadow-2xl transition-transform duration-300 ease-out ${
             menuOpen ? "translate-x-0" : "translate-x-full"
           }`}
           aria-label="Mobile navigation"
         >
           <div className="flex items-center justify-between border-b border-pink-light/40 px-5 py-4">
-            <span className={`${playfair.className} text-lg font-bold text-[#16161c]`}>Menu</span>
+            <span className={`${playfair.className} text-lg font-bold text-foreground`}>Menu</span>
             <button
               type="button"
-              className="flex h-10 w-10 items-center justify-center rounded-lg text-[#3a3a44] hover:bg-pink-light/40"
+              className="flex h-10 w-10 items-center justify-center rounded-lg text-foreground hover:bg-pink-light/40"
               onClick={() => setMenuOpen(false)}
               aria-label="Close menu"
             >
@@ -242,7 +241,7 @@ export default function HeroSection() {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="block rounded-xl px-4 py-3.5 text-sm font-bold uppercase tracking-[0.2em] text-[#3a3a44] transition-colors hover:bg-pink-light/35 hover:text-[#b76e79]"
+                  className="block rounded-xl px-4 py-3.5 text-sm font-bold uppercase tracking-[0.2em] text-foreground transition-colors hover:bg-pink-light/35 hover:text-pink"
                   onClick={() => setMenuOpen(false)}
                 >
                   {link.label}
@@ -256,13 +255,13 @@ export default function HeroSection() {
       {/* Hero visual */}
       <div className="relative min-h-[calc(100dvh-5.5rem)] flex-1 overflow-hidden">
         {/* Rotating backgrounds — entrance cycles; overlay animates over previous photo (no white flash) */}
-        <div className="absolute inset-0 bg-[#2a2220]">
+        <div className="absolute inset-0 bg-foreground/90">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
-              src={HERO_IMAGES[visibleIndex]}
+              src={HERO_FRAMES[visibleIndex].src}
               alt=""
               fill
-              className={HERO_IMAGE_CLASS}
+              className={`${HERO_IMAGE_BASE_CLASS} ${HERO_FRAMES[visibleIndex].className}`}
               sizes="100vw"
               priority={visibleIndex === 0}
             />
@@ -273,21 +272,21 @@ export default function HeroSection() {
               className={`absolute inset-0 z-[1] overflow-hidden ${incomingClass}`}
             >
               <Image
-                src={HERO_IMAGES[incomingIndex]}
+                src={HERO_FRAMES[incomingIndex].src}
                 alt=""
                 fill
-                className={HERO_IMAGE_CLASS}
+                className={`${HERO_IMAGE_BASE_CLASS} ${HERO_FRAMES[incomingIndex].className}`}
                 sizes="100vw"
               />
             </div>
           ) : null}
           {/* Light romantic wash — keeps photos bright; soft tint for text contrast */}
           <div
-            className="absolute inset-0 z-10 bg-linear-to-b from-[#fff8fa]/45 via-[#f5d4dc]/28 to-[#d9a8b8]/38"
+            className="absolute inset-0 z-10 bg-linear-to-b from-background/20 via-pink-soft/20 to-pink-soft/35"
             aria-hidden
           />
           <div
-            className="absolute inset-0 z-10 bg-linear-to-t from-[#6b4a58]/25 via-transparent to-transparent"
+            className="absolute inset-0 z-10 bg-linear-to-t from-foreground/30 via-transparent to-transparent"
             aria-hidden
           />
         </div>
@@ -305,23 +304,72 @@ export default function HeroSection() {
               Ibierebo <span className="font-black text-white/95">&amp;</span> Damilola
             </h1>
 
-            {/* Divider with flourish */}
-            <div className="my-9 flex w-full max-w-lg items-center justify-center gap-4 md:my-11 lg:max-w-xl">
-              <span className="h-0.5 flex-1 bg-white/60" aria-hidden />
+            {/* Divider with baroque motif */}
+            <div className="my-9 w-full max-w-xl md:my-11">
               <svg
-                className="h-5 w-12 shrink-0 text-white drop-shadow-sm md:h-6 md:w-14"
-                viewBox="0 0 40 16"
+                className="h-9 w-full text-white drop-shadow-sm"
+                viewBox="0 0 560 44"
                 fill="none"
+                xmlns="http://www.w3.org/2000/svg"
                 aria-hidden
               >
                 <path
-                  d="M2 8 Q10 2 20 8 T38 8"
+                  d="M8 22H150"
                   stroke="currentColor"
-                  strokeWidth="2"
+                  strokeWidth="1.4"
                   strokeLinecap="round"
+                  opacity="0.65"
                 />
+                <path
+                  d="M410 22H552"
+                  stroke="currentColor"
+                  strokeWidth="1.4"
+                  strokeLinecap="round"
+                  opacity="0.65"
+                />
+                <path
+                  d="M150 22c18 0 20-10 32-10s14 10 42 10s30-10 42-10s14 10 32 10"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+                <path
+                  d="M250 22.2c0-9 7.5-16.2 16.8-16.2c6 0 11.5 3.1 14.7 7.8c3.2-4.7 8.7-7.8 14.7-7.8c9.3 0 16.8 7.2 16.8 16.2c0 12-13.6 18.5-31.5 23.7c-17.9-5.2-31.5-11.7-31.5-23.7Z"
+                  fill="currentColor"
+                  opacity="0.18"
+                />
+                <path
+                  d="M257 22.2c0-6.1 5.2-11.1 11.5-11.1c4.6 0 8.4 2.5 13.3 7.2c4.9-4.7 8.7-7.2 13.3-7.2c6.3 0 11.5 5 11.5 11.1c0 8.2-9.2 13.1-24.8 17.4c-15.6-4.3-24.8-9.2-24.8-17.4Z"
+                  stroke="currentColor"
+                  strokeWidth="1.15"
+                  fill="none"
+                  opacity="0.95"
+                />
+                <path
+                  d="M332 22c18 0 20-10 32-10s14 10 42 10s30-10 42-10s14 10 32 10"
+                  stroke="currentColor"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+
+                <path
+                  d="M208 22c0-5.6 4.7-10.1 10.6-10.1c3.4 0 6.5 1.6 8.5 4.2c2-2.6 5.1-4.2 8.5-4.2c5.9 0 10.6 4.5 10.6 10.1c0 6.7-7.5 10.7-19.1 14.1c-11.6-3.4-19.1-7.4-19.1-14.1Z"
+                  stroke="currentColor"
+                  strokeWidth="1.05"
+                  opacity="0.9"
+                />
+                <path
+                  d="M317 22c0-5.6 4.7-10.1 10.6-10.1c3.4 0 6.5 1.6 8.5 4.2c2-2.6 5.1-4.2 8.5-4.2c5.9 0 10.6 4.5 10.6 10.1c0 6.7-7.5 10.7-19.1 14.1c-11.6-3.4-19.1-7.4-19.1-14.1Z"
+                  stroke="currentColor"
+                  strokeWidth="1.05"
+                  opacity="0.9"
+                />
+                <circle cx="282" cy="6.7" r="1.9" fill="currentColor" opacity="0.72" />
+                <circle cx="227" cy="9.4" r="1.6" fill="currentColor" opacity="0.5" />
+                <circle cx="337" cy="9.4" r="1.6" fill="currentColor" opacity="0.5" />
               </svg>
-              <span className="h-0.5 flex-1 bg-white/60" aria-hidden />
             </div>
 
             <p className="max-w-2xl text-base font-semibold leading-relaxed text-white drop-shadow-[0_1px_5px_rgba(0,0,0,0.38)] md:text-lg lg:text-xl">

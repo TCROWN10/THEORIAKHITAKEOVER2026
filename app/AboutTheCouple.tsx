@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import { useEffect, useRef, useState, type ReactNode } from "react";
-import { Great_Vibes, DM_Sans } from "next/font/google";
+import { Great_Vibes, DM_Sans, Poppins } from "next/font/google";
 
 const script = Great_Vibes({ subsets: ["latin"], weight: "400" });
 const body = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
+const letter = Poppins({ subsets: ["latin"], weight: ["400", "500"] });
 
 /** Portrait picks — swap paths anytime for dedicated groom/bride shots. */
 const GROOM_IMAGE = "/ARONN-1223.jpg";
@@ -13,23 +14,53 @@ const BRIDE_IMAGE = "/ARONN-1390.jpg";
 
 function SectionDivider() {
   return (
-    <div className="mx-auto mb-8 flex w-full max-w-sm items-center justify-center gap-3 md:mb-10">
-      <span className="h-px flex-1 bg-accent-green/70" aria-hidden />
+    <div className="mx-auto mb-8 w-full max-w-md md:mb-10" aria-hidden>
       <svg
-        className="h-4 w-10 shrink-0 text-accent-green"
-        viewBox="0 0 40 12"
+        className="h-8 w-full text-pink-light"
+        viewBox="0 0 420 42"
         fill="none"
-        aria-hidden
+        xmlns="http://www.w3.org/2000/svg"
       >
         <path
-          d="M4 6h32M20 2v8"
+          d="M8 21H120"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          opacity="0.7"
+        />
+        <path
+          d="M300 21H412"
+          stroke="currentColor"
+          strokeWidth="1.4"
+          strokeLinecap="round"
+          opacity="0.7"
+        />
+
+        <path
+          d="M120 21c18 0 20-13 38-13s20 13 52 13s34-13 52-13s20 13 38 13"
+          stroke="currentColor"
+          strokeWidth="1.6"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+
+        <path
+          d="M185 20.5c0-7.5 6.4-13.5 14.2-13.5c5.2 0 9.8 2.6 12.3 6.6c2.5-4 7.1-6.6 12.3-6.6C231.6 7 238 13 238 20.5c0 10.2-11.4 15.8-26.5 20.2c-15.1-4.4-26.5-10-26.5-20.2Z"
+          fill="currentColor"
+          opacity="0.22"
+        />
+        <path
+          d="M191.5 20.5c0-5.4 4.5-9.8 10.1-9.8c4.1 0 7.5 2.2 9.9 5.7c2.4-3.5 5.8-5.7 9.9-5.7c5.6 0 10.1 4.4 10.1 9.8c0 7.3-8.1 11.7-20 15.4c-11.9-3.7-20-8.1-20-15.4Z"
           stroke="currentColor"
           strokeWidth="1.2"
-          strokeLinecap="round"
+          fill="none"
+          opacity="0.9"
         />
-        <circle cx="20" cy="6" r="2" fill="currentColor" opacity="0.35" />
+
+        <circle cx="158" cy="8.5" r="2" fill="currentColor" opacity="0.5" />
+        <circle cx="265" cy="8.5" r="2" fill="currentColor" opacity="0.5" />
+        <circle cx="211.5" cy="5.7" r="1.7" fill="currentColor" opacity="0.6" />
       </svg>
-      <span className="h-px flex-1 bg-accent-green/70" aria-hidden />
     </div>
   );
 }
@@ -121,11 +152,11 @@ export default function AboutTheCouple() {
   return (
     <section
       id="about-the-couple"
-      className={`relative z-10 scroll-mt-24 bg-white py-12 md:py-16 ${body.className}`}
+      className={`relative z-10 scroll-mt-24 bg-background py-12 md:py-16 ${body.className}`}
     >
       <div className="mx-auto max-w-6xl px-6 md:px-10">
         <h2
-          className={`${script.className} text-center text-[2.1rem] leading-none text-[#9d3d72] sm:text-[2.35rem] md:text-[2.55rem]`}
+          className={`${script.className} text-center text-[2.45rem] leading-none text-[#800000] sm:text-[2.8rem] md:text-[3.1rem]`}
         >
           About the Couple
         </h2>
@@ -140,14 +171,14 @@ export default function AboutTheCouple() {
           </div>
           <div className="min-w-0 self-start text-left">
             <h3
-              className={`${script.className} mb-1 text-[1.85rem] leading-tight text-[#9d3d72] sm:text-[2rem] md:text-[2.15rem]`}
+              className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
             >
               Whyte Ibierebo Sunjuye
             </h3>
             <p className="mb-0 text-base font-bold leading-tight text-foreground">
               To my darling woman,
             </p>
-            <div className="mt-1 space-y-1 text-base leading-snug text-[#2d2d2d]">
+            <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
               <p>
                 <span className="font-semibold text-foreground">The</span> one I have chosen to spend
                 my entire life with… <br /> Words will never truly be enough to express how <br /> much you mean to
@@ -175,14 +206,14 @@ export default function AboutTheCouple() {
         <div className="mt-14 grid grid-cols-1 items-start gap-8 md:mt-20 md:grid-cols-2 md:items-start md:gap-10 lg:gap-12">
           <div className="order-2 min-w-0 self-start text-left md:order-1">
             <h3
-              className={`${script.className} mb-1 text-[1.85rem] leading-tight text-[#9d3d72] sm:text-[2rem] md:text-[2.15rem]`}
+              className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
             >
               Damilola Daniel Adeleye
             </h3>
             <p className="mb-0 text-base font-bold leading-tight text-foreground">
               My dearest Man,
             </p>
-            <div className="mt-1 space-y-1 text-base leading-snug text-[#2d2d2d]">
+            <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
               <p>
                 <span className="font-semibold text-foreground">Loving</span> you has been the most
                 beautiful part of my life. <br /> You bring me peace, joy, and a kind of happiness <br /> I never knew

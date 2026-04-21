@@ -1,13 +1,14 @@
 @import "tailwindcss";
 
 :root {
-  --background: #fdf8f6;
-  --foreground: #2d2d2d;
-  --pink: #c9a9a6;
-  --pink-light: #e8d5d3;
-  --pink-soft: #e2c4c1;
-  --text-muted: #8a8583;
-  --accent-green: #a8c4b0;
+  --background: #ffffff;
+  --foreground: #454d5a;
+  --pink: #303c4c;
+  --pink-light: #314659;
+  --pink-soft: #e8c9d0;
+  --text-muted: #5f6876;
+  --accent-green: #e8c9d0;
+  --accent-gold: #d8c18a;
 }
 
 html {
@@ -26,7 +27,7 @@ html {
 }
 
 body {
-  background: linear-gradient(180deg, #fdf8f6 0%, #f5ebe8 50%, #f0e6e2 100%);
+  background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans);
   min-height: 100vh;

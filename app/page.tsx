@@ -4,6 +4,7 @@ import PhotoGallery from "./PhotoGallery";
 import CopyableField from "./CopyableField";
 import HeroSection from "./HeroSection";
 import AboutTheCouple from "./AboutTheCouple";
+import { type ReactNode } from "react";
 
 /** Full addresses for Maps — `encodeURIComponent` avoids broken `?q=` links */
 const GOOGLE_MAPS_TRADITIONAL = `https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(
@@ -86,42 +87,72 @@ function GiftIcon({ className }: { className?: string }) {
   );
 }
 
-/** Teal line + overlapping loops (reference layout) */
-function ColourCodeDivider({ className }: { className?: string }) {
+function OrnateDivider({
+  className,
+  center,
+}: {
+  className?: string;
+  center?: ReactNode;
+}) {
   return (
-    <div className={`mx-auto flex w-full max-w-md items-center justify-center gap-0 ${className ?? ""}`}>
-      <span className="h-px flex-1 bg-[#8eb8aa]" aria-hidden />
+    <div className={`mx-auto flex w-full max-w-md items-center justify-center ${className ?? ""}`}>
       <svg
-        className="mx-2 h-9 w-20 shrink-0 text-[#7da89c]"
-        viewBox="0 0 80 28"
+        className="h-6 w-full text-pink-light"
+        viewBox="0 0 200 24"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+        aria-hidden
+      >
+        <path d="M2 12H66" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.75" />
+        <path
+          d="M66 12c12 0 13-8 25-8s13 8 29 8s17-8 29-8s13 8 25 8"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+        <path d="M134 12H198" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" opacity="0.75" />
+      </svg>
+      {center ? (
+        <span className="mx-3 inline-flex shrink-0 items-center justify-center rounded-full border border-pink-light/60 bg-background px-1.5 py-1">
+          {center}
+        </span>
+      ) : null}
+      <svg
+        className="h-6 w-full -scale-x-100 text-pink-light"
+        viewBox="0 0 200 24"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden
       >
         <path
-          d="M12 18c0-6 6-10 14-10s14 4 14 10"
+          d="M2 12H66"
           stroke="currentColor"
-          strokeWidth="1.3"
+          strokeWidth="1.4"
           strokeLinecap="round"
+          opacity="0.75"
         />
         <path
-          d="M28 18c0-6 6-10 14-10s14 4 14 10"
+          d="M66 12c12 0 13-8 25-8s13 8 29 8s17-8 29-8s13 8 25 8"
           stroke="currentColor"
-          strokeWidth="1.3"
+          strokeWidth="1.5"
           strokeLinecap="round"
-          opacity="0.9"
+          strokeLinejoin="round"
         />
         <path
-          d="M44 18c0-6 6-10 14-10s12 4 12 10"
+          d="M134 12H198"
           stroke="currentColor"
-          strokeWidth="1.3"
+          strokeWidth="1.4"
           strokeLinecap="round"
           opacity="0.75"
         />
       </svg>
-      <span className="h-px flex-1 bg-[#8eb8aa]" aria-hidden />
     </div>
   );
+}
+
+function ColourCodeDivider({ className }: { className?: string }) {
+  return <OrnateDivider className={className} />;
 }
 
 export default function Home() {
@@ -151,7 +182,7 @@ export default function Home() {
             aria-hidden
           />
           <div className="w-full sm:w-1/2 flex justify-center sm:justify-end pr-0 sm:pr-4 relative z-10">
-            <div className="w-full max-w-[240px] rounded-2xl border-2 border-pink bg-white/50 py-6 px-6 text-center shadow-sm">
+            <div className="w-full max-w-[240px] rounded-2xl border-2 border-pink bg-white/80 py-6 px-6 text-center shadow-sm">
               <p className="text-pink text-sm font-light tracking-[0.2em] uppercase mb-2">
                 White Wedding
               </p>
@@ -213,16 +244,15 @@ export default function Home() {
           Join Us On Our Special Days
         </h2>
         {/* Decorative line with calendar icon */}
-        <div className="flex items-center justify-center gap-3 w-full max-w-sm mb-12">
-          <span className="flex-1 h-px bg-pink-light" aria-hidden />
-          <CalendarIcon className="w-8 h-8 text-pink shrink-0" />
-          <span className="flex-1 h-px bg-pink-light" aria-hidden />
-        </div>
+        <OrnateDivider
+          className="mb-12 w-full max-w-sm"
+          center={<CalendarIcon className="h-6 w-6 text-pink shrink-0" />}
+        />
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-4xl">
           {/* Top-left: Date card */}
-          <div className="rounded-2xl bg-accent-green/20 border border-accent-green/40 py-8 px-6 flex flex-col items-center justify-center text-center shadow-sm">
-            <p className="text-accent-green text-sm font-light tracking-[0.2em] uppercase mb-1">
+          <div className="rounded-2xl bg-white/80 border border-pink-light/60 py-8 px-6 flex flex-col items-center justify-center text-center shadow-sm">
+            <p className="text-pink-light text-sm font-light tracking-[0.2em] uppercase mb-1">
               Saturday
             </p>
             <p className="font-serif text-5xl md:text-6xl font-semibold text-foreground">20</p>
@@ -233,7 +263,7 @@ export default function Home() {
           <div className="rounded-2xl bg-white/80 shadow-sm py-6 px-6 flex flex-col">
             <ChurchIcon className="w-6 h-6 text-pink mb-3 shrink-0" />
             <h3 className="font-serif text-foreground text-xl font-medium">
-              White Wedding & Reception
+              White Wedding
             </h3>
             <p className="text-text-muted text-base font-light mt-1 leading-relaxed">
               Holy matrimony followed by dinner and joyful celebration.
@@ -264,10 +294,10 @@ export default function Home() {
             </a>
           </div>
 
-          {/* Bottom-left: Traditional Wedding */}
-          <div className="rounded-2xl bg-white/80 shadow-sm py-6 px-6 flex flex-col">
-            <HeartOutline className="w-6 h-6 text-accent-green mb-3 shrink-0" />
-            <h3 className="font-serif text-foreground text-xl font-medium">Traditional Wedding</h3>
+          {/* Bottom-left: Reception / Traditional */}
+          <div className="rounded-2xl bg-foreground/5 border border-pink-light/60 shadow-sm py-6 px-6 flex flex-col">
+            <HeartOutline className="w-6 h-6 text-pink-light mb-3 shrink-0" />
+            <h3 className="font-serif text-foreground text-xl font-medium">Reception / Traditional</h3>
             <p className="text-text-muted text-base font-light mt-1 leading-relaxed">
               A celebration of our rich cultural heritage and traditions.
             </p>
@@ -290,7 +320,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open Google Maps directions to Merry Makers Event Center, Abuja"
-              className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border-2 border-accent-green text-accent-green py-2.5 px-4 text-base font-light w-fit hover:bg-accent-green/10 transition-colors"
+              className="mt-5 inline-flex items-center justify-center gap-2 rounded-lg border-2 border-pink-light text-pink-light py-2.5 px-4 text-base font-light w-fit hover:bg-pink-light/10 transition-colors"
             >
               <MapPinIcon className="w-4 h-4" />
               Get Directions
@@ -369,10 +399,10 @@ export default function Home() {
             </span>
           </div>
           <p className="text-foreground mt-4 text-center text-base font-light leading-relaxed">
-            Ladies, flowing gowns or elegant dresses in orange, beige, or emerald tones are perfect.
+            Ladies: Flowing gowns or elegant dresses in orange, beige, or emerald
             <br />
             <span className="mt-1.5 block">
-              Gentlemen, suits or traditional attire in complementary colors are encouraged.
+              Gentlemen: Suits or traditional attire in complementary colors
             </span>
           </p>
         </div>
@@ -394,11 +424,10 @@ export default function Home() {
         <h2 className="font-serif text-3xl md:text-5xl text-foreground text-center font-semibold">
           Photo Gallery
         </h2>
-        <div className="flex items-center justify-center gap-3 w-full max-w-sm my-6">
-          <span className="flex-1 h-px bg-pink-light" aria-hidden />
-          <CameraIcon className="w-8 h-8 text-pink shrink-0" />
-          <span className="flex-1 h-px bg-pink-light" aria-hidden />
-        </div>
+        <OrnateDivider
+          className="my-6 w-full max-w-sm"
+          center={<CameraIcon className="h-6 w-6 text-pink shrink-0" />}
+        />
         <p className="text-text-muted text-base font-light text-center max-w-lg mb-10">
           A glimpse into our journey of love. Replace these with your own cherished memories.
         </p>
@@ -521,7 +550,7 @@ export default function Home() {
               className="mt-2 inline-flex items-center justify-center gap-2 text-text-muted text-base font-light hover:text-foreground transition-colors"
             >
               <PhoneIcon className="w-4 h-4 shrink-0" />
-              +234 706 418 0314
+              +234 706 478 0314
             </a>
           </div>
           <div className="w-full max-w-[260px] rounded-2xl bg-white/80 shadow-sm py-5 px-5 text-center">
