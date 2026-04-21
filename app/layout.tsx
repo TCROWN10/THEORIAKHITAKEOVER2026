@@ -3,7 +3,7 @@ import "./globals.css";
 import BackgroundMusic from "./BackgroundMusic";
 
 export const metadata: Metadata = {
-  title: "Ibierebo & Damilola | IDLoveStory",
+  title: "IDLOVESTORY",
   description:
     "Wedding invitation for Ibierebo & Damilola — A celebration of love, faith, and friendship.",
 };

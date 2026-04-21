@@ -553,7 +553,7 @@ export default function Home() {
       <footer className="relative z-10 py-12 px-6 text-center border-t border-pink-light/50">
         <p className="text-text-muted text-base font-light">
           Designed by{" "}
-          <span className="text-foreground underline underline-offset-2">Tcrown</span>
+          <span className="text-foreground underline underline-offset-2">IDLoveStory</span>
         </p>
       </footer>
     </div>
