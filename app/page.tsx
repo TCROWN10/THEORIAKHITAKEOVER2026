@@ -617,7 +617,7 @@ export default function Home() {
             <MailIcon className="h-4.5 w-4.5" />
           </a>
           <a
-            href="https://wa.me/2349163212388"
+            href="https://wa.me/2349163232188"
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with TCROWN on WhatsApp"
