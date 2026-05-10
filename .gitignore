@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Bad Next.js output joined into repo root when project path had encoding issues
+/Users/
+var/

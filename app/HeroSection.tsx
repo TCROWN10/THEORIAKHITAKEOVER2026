@@ -4,7 +4,6 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Playfair_Display, DM_Sans } from "next/font/google";
 
-/** Bold display serif for logo + hero names — weights 700–900 read strong at large sizes. */
 const playfair = Playfair_Display({
   subsets: ["latin"],
   weight: ["700", "800", "900"],
@@ -26,10 +25,6 @@ const HERO_FRAMES = [
   { src: "/ARONN-1398.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:scale-100 md:object-top lg:object-[center_23%]" },
 ] as const;
 
-/**
- * Each slide uses a different full-screen entrance on the same rotating photos.
- * Order cycles: rise (original) → circle iris → left → right → top → bottom.
- */
 const HERO_ENTER_TRANSITIONS = [
   "hero-image-rise",
   "hero-image-circle",
@@ -40,22 +35,20 @@ const HERO_ENTER_TRANSITIONS = [
 ] as const;
 
 const HERO_ROTATE_MS = 6000;
-/** Must be ≥ longest hero entrance animation (see globals.css) */
 const HERO_TRANSITION_MS = 1250;
 
 const HERO_IMAGE_BASE_CLASS = "origin-center object-cover";
 
 const NAV_LINKS = [
-  { href: "#", label: "Home" },
-  { href: "#about-the-couple", label: "Our Story" },
-  { href: "#events", label: "Events" },
-  { href: "#gallery", label: "Gallery" },
-  { href: "#dress-code", label: "Dress Code" },
-  { href: "#gifts", label: "Gifts" },
-  { href: "#rsvp", label: "RSVP" },
+  { href: "/celebration", label: "Home" },
+  { href: "/celebration#about-the-couple", label: "Our Story" },
+  { href: "/celebration#events", label: "Events" },
+  { href: "/celebration#gallery", label: "Gallery" },
+  { href: "/celebration#dress-code", label: "Dress Code" },
+  { href: "/celebration#gifts", label: "Gifts" },
+  { href: "/celebration#rsvp", label: "RSVP" },
 ] as const;
 
-/** Wide stroke “V” with the tip pointing down — reads clearly as a scroll-down cue. */
 function ScrollDownV({ className }: { className?: string }) {
   return (
     <svg
@@ -105,16 +98,11 @@ export default function HeroSection() {
   const revealTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [menuOpen, setMenuOpen] = useState(false);
 
-  /**
-   * Incoming slide animates **on top** of the previous image so gaps never show the page background.
-   * After the animation, the base layer updates and the overlay unmounts.
-   */
   useEffect(() => {
     const interval = setInterval(() => {
       setVisibleIndex((prev) => {
         const next = (prev + 1) % HERO_FRAMES.length;
-        const anim =
-          HERO_ENTER_TRANSITIONS[next % HERO_ENTER_TRANSITIONS.length];
+        const anim = HERO_ENTER_TRANSITIONS[next % HERO_ENTER_TRANSITIONS.length];
         setIncomingIndex(next);
         setIncomingClass(anim);
         if (revealTimeoutRef.current) clearTimeout(revealTimeoutRef.current);
@@ -154,9 +142,8 @@ export default function HeroSection() {
 
   return (
     <section className={`relative flex min-h-screen flex-col bg-background ${ui.className}`}>
-      {/* Top bar */}
       <header className="relative z-30 flex flex-wrap items-center justify-between gap-3 border-b border-pink-light/40 bg-background px-4 py-4 md:px-10 lg:px-14">
-        <a href="#" className="group flex flex-col items-start gap-1">
+        <a href="/celebration" className="group flex flex-col items-start gap-1">
           <div
             className={`${playfair.className} flex items-baseline gap-1 text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-[1.85rem] lg:text-4xl`}
           >
@@ -182,7 +169,7 @@ export default function HeroSection() {
               key={link.label}
               href={link.href}
               className={
-                link.href === "#"
+                link.href === "/celebration"
                   ? "text-pink transition-colors hover:text-pink-light"
                   : "transition-colors hover:text-pink"
               }
@@ -204,7 +191,6 @@ export default function HeroSection() {
         </button>
       </header>
 
-      {/* Mobile / tablet slide-over nav */}
       <div
         id="mobile-nav-panel"
         className={`fixed inset-0 z-40 lg:hidden ${menuOpen ? "pointer-events-auto" : "pointer-events-none"}`}
@@ -252,9 +238,7 @@ export default function HeroSection() {
         </nav>
       </div>
 
-      {/* Hero visual */}
       <div className="relative min-h-[calc(100dvh-5.5rem)] flex-1 overflow-hidden">
-        {/* Rotating backgrounds — entrance cycles; overlay animates over previous photo (no white flash) */}
         <div className="absolute inset-0 bg-foreground/90">
           <div className="absolute inset-0 z-0 overflow-hidden">
             <Image
@@ -280,7 +264,6 @@ export default function HeroSection() {
               />
             </div>
           ) : null}
-          {/* Light romantic wash — keeps photos bright; soft tint for text contrast */}
           <div
             className="absolute inset-0 z-10 bg-linear-to-b from-background/20 via-pink-soft/20 to-pink-soft/35"
             aria-hidden
@@ -291,7 +274,6 @@ export default function HeroSection() {
           />
         </div>
 
-        {/* Copy: main block centered; scroll CTA pinned toward bottom */}
         <div className="relative z-20 flex min-h-[calc(100dvh-5.5rem)] flex-col items-center px-5 pb-6 pt-8 text-center text-white md:px-8">
           <div className="flex w-full max-w-4xl flex-1 flex-col items-center justify-center py-6">
             <p className="mb-5 text-sm font-semibold uppercase tracking-[0.28em] text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)] md:mb-6 md:text-base lg:text-lg">
@@ -304,7 +286,6 @@ export default function HeroSection() {
               Ibierebo <span className="font-black text-white/95">&amp;</span> Damilola
             </h1>
 
-            {/* Divider with baroque motif */}
             <div className="my-9 w-full max-w-xl md:my-11">
               <svg
                 className="h-9 w-full text-[#D4AF37] drop-shadow-sm"
@@ -379,7 +360,7 @@ export default function HeroSection() {
           </div>
 
           <a
-            href="#about-the-couple"
+            href="/celebration#about-the-couple"
             className="mt-auto mb-4 flex flex-col items-center gap-0.5 text-white transition-opacity hover:opacity-95 md:mb-8 md:gap-1"
             aria-label="Scroll down to our story"
           >

@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import BackgroundMusic from "./BackgroundMusic";
+import { WeddingAudioProvider } from "./WeddingAudioContext";
 
 export const metadata: Metadata = {
   title: "IDLOVESTORY",
   description:
     "Wedding invitation for Ibierebo & Damilola — A celebration of love, faith, and friendship.",
+  icons: {
+    icon: [{ url: "/icon.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({
@@ -24,8 +28,10 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased font-sans">
-        <BackgroundMusic />
-        {children}
+        <WeddingAudioProvider>
+          <BackgroundMusic />
+          {children}
+        </WeddingAudioProvider>
       </body>
     </html>
   );

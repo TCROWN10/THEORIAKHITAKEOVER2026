@@ -3,9 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
+    "predev": "node scripts/prep-next.mjs",
+    "prebuild": "node scripts/prep-next.mjs",
+    "prestart": "node scripts/prep-next.mjs",
+    "dev": "PORT=${PORT:-3001} node scripts/run-next-webpack.mjs dev --webpack -H 0.0.0.0",
+    "dev:fix": "node scripts/clean-turbopack.mjs && PORT=${PORT:-3001} node scripts/run-next-webpack.mjs dev --webpack -H 0.0.0.0",
+    "dev:turbo": "node scripts/prep-next.mjs && node scripts/run-next-turbo.mjs",
+    "dev:alt": "node scripts/run-next-webpack.mjs dev --webpack -H 0.0.0.0 -p 3333",
+    "build": "node scripts/run-next-webpack.mjs build --webpack",
+    "build:turbo": "node scripts/prep-next.mjs && next build",
+    "start": "PORT=${PORT:-3000} node scripts/run-next-webpack.mjs start -H 0.0.0.0",
+    "clean": "node scripts/clean-turbopack.mjs",
     "lint": "eslint"
   },
   "dependencies": {

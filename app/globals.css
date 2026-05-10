@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* Explicit scan paths — avoids missing utilities when the workspace root / lockfile detection is unusual */
+@source "./**/*.{ts,tsx,js,jsx,mdx}";
+@source "../lib/**/*.{ts,tsx,js,jsx}";
+
 :root {
   --background: #f4f8fc;
   --foreground: #1f2a44;
@@ -352,5 +356,65 @@ a[aria-disabled="true"] {
 
   .back-to-top-float {
     animation: none;
+  }
+}
+
+/* Hero orbit — photos on dashed rings; face counter-rotates upright */
+@keyframes hero-orbit-cw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes hero-orbit-ccw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes hero-orbit-face-cw {
+  to {
+    transform: rotate(-360deg);
+  }
+}
+
+@keyframes hero-orbit-face-ccw {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.hero-orbit-spin-cw {
+  animation: hero-orbit-cw var(--orbit-dur, 36s) linear infinite;
+}
+
+.hero-orbit-spin-ccw {
+  animation: hero-orbit-ccw var(--orbit-dur, 36s) linear infinite;
+}
+
+.hero-orbit-face-cw {
+  animation: hero-orbit-face-cw var(--orbit-dur, 36s) linear infinite;
+}
+
+.hero-orbit-face-ccw {
+  animation: hero-orbit-face-ccw var(--orbit-dur, 36s) linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-orbit-spin-cw,
+  .hero-orbit-spin-ccw,
+  .hero-orbit-face-cw,
+  .hero-orbit-face-ccw {
+    animation: none;
+  }
+
+  .hero-orbit-face-cw,
+  .hero-orbit-face-ccw {
+    transform: none;
+  }
+
+  .hero-orbit-spin-cw,
+  .hero-orbit-spin-ccw {
+    transform: none;
   }
 }
