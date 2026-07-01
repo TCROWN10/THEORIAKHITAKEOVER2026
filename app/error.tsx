@@ -13,10 +13,15 @@ export default function Error({
     console.error(error);
   }, [error]);
 
+  const message =
+    error?.message && error.message !== "[object Event]"
+      ? error.message
+      : "Something went wrong. Please refresh the page.";
+
   return (
     <div className="flex min-h-[50vh] flex-col items-center justify-center gap-4 px-6 py-16 text-center">
       <p className="text-lg font-semibold text-foreground">Something went wrong</p>
-      <p className="max-w-md text-sm text-text-muted">{error.message}</p>
+      <p className="max-w-md text-sm text-text-muted">{message}</p>
       <button
         type="button"
         onClick={() => reset()}

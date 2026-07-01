@@ -4,13 +4,15 @@ import { useCallback } from "react";
 import { useWeddingAudio } from "./WeddingAudioContext";
 
 export default function BackgroundMusic() {
-  const { tryPlay, needsUserPlay } = useWeddingAudio();
+  const { tryPlay, needsUserPlay, musicEnabled } = useWeddingAudio();
 
   const handleButtonPlay = useCallback(() => {
     tryPlay().catch(() => {});
   }, [tryPlay]);
 
-  return needsUserPlay ? (
+  if (!musicEnabled || !needsUserPlay) return null;
+
+  return (
     <button
       type="button"
       onClick={handleButtonPlay}
@@ -18,5 +20,5 @@ export default function BackgroundMusic() {
     >
       Tap to play music ♪
     </button>
-  ) : null;
+  );
 }

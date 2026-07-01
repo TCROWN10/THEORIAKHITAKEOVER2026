@@ -7,11 +7,16 @@ export default function GlobalError({
   error: Error & { digest?: string };
   reset: () => void;
 }) {
+  const message =
+    error?.message && error.message !== "[object Event]"
+      ? error.message
+      : "Something went wrong. Please refresh the page.";
+
   return (
     <html lang="en">
       <body style={{ margin: 0, fontFamily: "system-ui", padding: "2rem", background: "#f5f2f3" }}>
         <h1 style={{ fontSize: "1.25rem" }}>Something went wrong</h1>
-        <p style={{ color: "#5f6876", marginTop: "0.5rem" }}>{error.message}</p>
+        <p style={{ color: "#5f6876", marginTop: "0.5rem" }}>{message}</p>
         <button
           type="button"
           onClick={() => reset()}

@@ -9,7 +9,7 @@ export default function AddToCalendar() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
-    a.download = "ibierebo-damilola-wedding-2026.ics";
+    a.download = "motunrayo-thomson-wedding-2026.ics";
     a.rel = "noopener noreferrer";
     document.body.appendChild(a);
     a.click();
@@ -21,7 +21,7 @@ export default function AddToCalendar() {
     <button
       type="button"
       onClick={handleClick}
-      aria-label="Download wedding calendar file (White wedding and Traditional wedding)"
+      aria-label="Download wedding calendar file (Traditional wedding and Reception)"
       className="btn-primary-shiny calendar-button-dance mt-8 inline-flex items-center justify-center rounded-full px-8 py-3 text-base font-bold tracking-wide"
     >
       Add to Calendar

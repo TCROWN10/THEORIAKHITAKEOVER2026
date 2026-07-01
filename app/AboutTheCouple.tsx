@@ -8,9 +8,11 @@ const script = Great_Vibes({ subsets: ["latin"], weight: "400" });
 const body = DM_Sans({ subsets: ["latin"], weight: ["400", "500", "600"] });
 const letter = Poppins({ subsets: ["latin"], weight: ["400", "500"] });
 
-/** Portrait picks — swap paths anytime for dedicated groom/bride shots. */
-const GROOM_IMAGE = "/ARONN-1223.jpg";
-const BRIDE_IMAGE = "/ARONN-1390.jpg";
+import { ABOUT_BRIDE_IMAGE, GROOM_PORTRAIT } from "@/lib/wedding-photos";
+
+/** Portrait picks — swap paths in `lib/wedding-photos.ts`. */
+const GROOM_IMAGE = GROOM_PORTRAIT;
+const BRIDE_IMAGE = ABOUT_BRIDE_IMAGE;
 
 function SectionDivider() {
   return (
@@ -117,7 +119,15 @@ function RevealOnScroll({
 }
 
 /** Portrait — fills its grid column (zigzag layout). */
-function AboutImage({ src, alt }: { src: string; alt: string }) {
+function AboutImage({
+  src,
+  alt,
+  objectPosition = "center 20%",
+}: {
+  src: string;
+  alt: string;
+  objectPosition?: string;
+}) {
   return (
     <div className="flex w-full justify-center">
       <div className="relative mx-auto w-full max-w-md overflow-hidden rounded-2xl shadow-[0_12px_40px_-12px_rgba(45,45,45,0.25)] md:max-w-none">
@@ -126,7 +136,8 @@ function AboutImage({ src, alt }: { src: string; alt: string }) {
             src={src}
             alt={alt}
             fill
-            className="object-cover object-[center_20%]"
+            className="object-cover"
+            style={{ objectPosition }}
             sizes="(max-width: 768px) 100vw, 45vw"
           />
         </div>
@@ -149,11 +160,11 @@ export default function AboutTheCouple() {
         </h2>
         <SectionDivider />
 
-        {/* Row 1 — image left, letter right */}
+        {/* Row 1 — groom image left, groom's letter right */}
         <div className="grid grid-cols-1 items-start gap-8 md:grid-cols-2 md:items-start md:gap-10 lg:gap-12">
           <div className="self-start">
             <RevealOnScroll from="left">
-              <AboutImage src={GROOM_IMAGE} alt="Whyte Ibierebo Sunjuye" />
+              <AboutImage src={GROOM_IMAGE} alt="Thomson ORIAKHI" />
             </RevealOnScroll>
           </div>
           <div className="min-w-0 self-start text-left">
@@ -161,67 +172,73 @@ export default function AboutTheCouple() {
               <h3
                 className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
               >
-                Whyte Ibierebo Sunjuye
+                Thomson ORIAKHI
               </h3>
               <p className="mb-0 text-base font-bold leading-tight text-foreground">
-                To my darling woman,
+                To my forever,
               </p>
-              <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
+              <div className={`${letter.className} mt-1 space-y-3 text-[0.84rem] leading-snug text-foreground`}>
                 <p>
-                  <span className="font-semibold text-foreground">The</span> one I have chosen to spend
-                  my entire life with… <br /> Words will never truly be enough to express how <br /> much you mean to
-                  me. My love for you goes beyond <br /> What i can say it is something I feel deeply every
-                  Single day.
+                  Today I thank God for the blessing of having you in my life. You&apos;ve brought
+                  happiness, wealth, strength and courage into my world. I&apos;m honored to become
+                  your husband. When I see you I see my half — how can I live without my half? You in
+                  my life brings completeness.
                 </p>
                 <p>
-                  I am endlessly grateful to have you by my side. <br /> Loving you has been one of the
-                  greatest <br /> blessings of my life, and I am so certain, so happy,<br /> and so at peace knowing
-                  that I get to do forever with you. <br />You don&apos;t just complete me, you bring light,
-                  meaning, <br /> and joy into every part of my life. <br /> With you, everything feels right,
-                  everything feels whole.
+                  I promise to love you forever through every season of life. I promise to respect
+                  you and support you until you fully become the woman you&apos;ve always desired to
+                  become. I bless God for this wonderful union.
                 </p>
-                <p>
-                  You are not just my other half…you are my answered prayer, my safe place, my best
-                  friend, and my forever after. I promise to love you, stand by you, grow with you, and
-                  choose you over and over again for the rest of my life.
+                <p className="font-medium text-foreground">
+                  Ecclesiastes 4:9, 12 — I love you forever, to my forever. ❤️
                 </p>
-                <p className="font-medium text-foreground">Forever yours. 💕</p>
               </div>
             </RevealOnScroll>
           </div>
         </div>
 
-        {/* Row 2 — letter left, image right (image first on small screens) */}
+        {/* Row 2 — bride's letter left, bride image right */}
         <div className="mt-14 grid grid-cols-1 items-start gap-8 md:mt-20 md:grid-cols-2 md:items-start md:gap-10 lg:gap-12">
           <div className="order-2 min-w-0 self-start text-left md:order-1">
             <RevealOnScroll from="left">
               <h3
                 className={`${script.className} mb-1 text-[2rem] font-bold leading-tight text-[#800000] sm:text-[2.3rem] md:text-[2.6rem]`}
               >
-                Damilola Daniel Adeleye
+                Gbadamosi Motunrayo
               </h3>
               <p className="mb-0 text-base font-bold leading-tight text-foreground">
-                My dearest Man,
+                My love 😍 oko mi,
               </p>
-              <div className={`${letter.className} mt-1 space-y-1 text-[0.84rem] leading-snug text-foreground`}>
+              <div className={`${letter.className} mt-1 space-y-3 text-[0.84rem] leading-snug text-foreground`}>
                 <p>
-                  <span className="font-semibold text-foreground">Loving</span> you has been the most
-                  beautiful part of my life. <br /> You bring me peace, joy, and a kind of happiness <br /> I never knew
-                  I needed.
+                  Loving you has been the most beautiful part of my life. You have filled my days
+                  with peace, joy, and a happiness I never knew I needed. With you, I have found not
+                  only love but also my best friend, my safe place, and my greatest blessing.
                 </p>
                 <p>
-                  Every day with you feels like a blessing,<br /> and I can&apos;t wait to spend forever by your
-                  side.<br /> You are my greatest gift. With you,<br /> I have found love, friendship, and a home.
-                  <br />Choosing you is the easiest <br /> decision I&apos;ve ever made, <br />and I look forward to a
-                  lifetime of <br /> loving you more each day.
+                  Choosing you is the easiest decision I have ever made, and I would choose you
+                  again and again without hesitation. You make me feel cherished, understood, and
+                  deeply loved.
                 </p>
-                <p className="font-medium text-foreground">I love you every second❤️</p>
+                <p>
+                  As we look forward to forever, I promise to love you faithfully, stand by your
+                  side through every season, and cherish every moment we share. My love for you grows
+                  stronger every day, and I cannot wait to spend a lifetime making beautiful
+                  memories with you.
+                </p>
+                <p className="font-medium text-foreground">
+                  You are my forever, my always, and the love of my life. ❤️✨
+                </p>
               </div>
             </RevealOnScroll>
           </div>
           <div className="order-1 self-start md:order-2">
             <RevealOnScroll from="right">
-              <AboutImage src={BRIDE_IMAGE} alt="Damilola Daniel Adeleye" />
+              <AboutImage
+                src={BRIDE_IMAGE}
+                alt="Gbadamosi Motunrayo"
+                objectPosition="32% 18%"
+              />
             </RevealOnScroll>
           </div>
         </div>

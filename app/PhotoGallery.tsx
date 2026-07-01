@@ -3,23 +3,12 @@
 import Image from "next/image";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-/**
- * One unique `caption` per `src` (hover overlay). Change only the string next to each `src`.
- */
-const GALLERY_SOURCE = [
-  { src: "/ARONN-0890.jpg", caption: "The day our eyes said what words hadn’t yet learned to say." },
-  { src: "/ARONN-0900.jpg", caption: "Laughter like this: proof that hearts can dance out loud." },
-  { src: "/ARONN-0968.jpg", caption: "Sun on our faces, peace in our souls—grateful for this chapter." },
-  { src: "/ARONN-0992.jpg", caption: "Side by side, step by step—my favourite journey starts with you." },
-  { src: "/ARONN-1086.jpg", caption: "A quiet moment where forever stopped rushing and simply stayed." },
-  { src: "/ARONN-1162.jpg", caption: "Wrapped in light, held by love—this is our kind of holy." },
-  { src: "/ARONN-1179.jpg", caption: "Your smile still does that thing to my heart—every single time." },
-  { src: "/ARONN-1223.jpg", caption: "Two stories became one—and the plot keeps getting sweeter." },
-  { src: "/ARONN-1361.jpg", caption: "Small frames, giant joy—thank God for ordinary days with you." },
-  { src: "/ARONN-1382.jpg", caption: "Dressed in grace, anchored in love—walking into forever together." },
-  { src: "/ARONN-1390.jpg", caption: "If home is a person, I’ve already found mine in you." },
-  { src: "/ARONN-1398.jpg", caption: "This happiness? Ours. This promise? Sealed with a soft amen." },
-] as const;
+import { GALLERY_CAPTIONS, GALLERY_PHOTOS } from "@/lib/wedding-photos";
+
+const GALLERY_SOURCE = GALLERY_PHOTOS.map((src, i) => ({
+  src,
+  caption: GALLERY_CAPTIONS[i] ?? "",
+}));
 
 export type GalleryItem = { src: string; caption: string; key: string };
 
@@ -109,7 +98,6 @@ function downloadGalleryImage(imageSrc: string, fileName: string) {
 
 function GalleryImage({ src, caption }: { src: string; caption: string }) {
   const [error, setError] = useState(false);
-  const handleError = useCallback(() => setError(true), []);
   const fileName = useMemo(() => galleryDownloadFileName(src), [src]);
 
   const onDownload = useCallback(() => {
@@ -137,12 +125,12 @@ function GalleryImage({ src, caption }: { src: string; caption: string }) {
             loading="eager"
             className="object-cover transition-transform duration-1000 ease-out motion-reduce:transition-none sm:group-hover:scale-105"
             sizes="(max-width: 639px) 100vw, (max-width: 1023px) 33vw, (max-width: 1279px) 25vw, 22vw"
-            onError={handleError}
+            onError={() => setError(true)}
           />
           <button
             type="button"
             onClick={onDownload}
-            className="absolute top-2 right-2 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/45 text-white shadow-md backdrop-blur-sm transition-colors hover:bg-black/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+            className="absolute bottom-2 right-2 z-20 flex h-10 w-10 items-center justify-center rounded-full border border-white/35 bg-black/45 text-white shadow-md backdrop-blur-sm transition-colors hover:bg-black/65 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
             aria-label={`Download photo (${fileName})`}
           >
             <DownloadIcon className="h-5 w-5" />

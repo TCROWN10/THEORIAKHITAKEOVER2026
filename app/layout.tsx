@@ -4,11 +4,12 @@ import BackgroundMusic from "./BackgroundMusic";
 import { WeddingAudioProvider } from "./WeddingAudioContext";
 
 export const metadata: Metadata = {
-  title: "IDLOVESTORY",
+  title: "#TheOriakhiTakeover2026",
   description:
-    "Wedding invitation for Ibierebo & Damilola — A celebration of love, faith, and friendship.",
+    "Wedding invitation for Gbadamosi Motunrayo & Thomson ORIAKHI — A celebration of love, faith, and friendship.",
   icons: {
-    icon: [{ url: "/icon.png", type: "image/png" }],
+    icon: "/DAV_9054-Edit.jpeg",
+    apple: "/DAV_9054-Edit.jpeg",
   },
 };
 

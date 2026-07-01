@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { Playfair_Display, DM_Sans } from "next/font/google";
+import { HERO_PHOTOS, HERO_PORTRAITS } from "@/lib/wedding-photos";
 
 const playfair = Playfair_Display({
   subsets: ["latin"],
@@ -10,20 +11,12 @@ const playfair = Playfair_Display({
 });
 const ui = DM_Sans({ subsets: ["latin"], weight: ["600", "700", "800"] });
 
-const HERO_FRAMES = [
-  { src: "/ARONN-0890.jpg", className: "scale-[1.45] object-[center_16%] sm:scale-[1.35] sm:object-[center_18%] md:scale-100 md:object-top lg:object-[center_22%]" },
-  { src: "/ARONN-0900.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:scale-100 md:object-top lg:object-[center_22%]" },
-  { src: "/ARONN-0968.jpg", className: "scale-[1.4] object-[center_14%] sm:scale-[1.3] sm:object-[center_16%] md:scale-100 md:object-top lg:object-[center_21%]" },
-  { src: "/ARONN-0992.jpg", className: "scale-[1.46] object-[center_19%] sm:scale-[1.36] sm:object-[center_20%] md:scale-100 md:object-top lg:object-[center_23%]" },
-  { src: "/ARONN-1086.jpg", className: "scale-[1.43] object-[center_15%] sm:scale-[1.33] sm:object-[center_16%] md:scale-100 md:object-top lg:object-[center_21%]" },
-  { src: "/ARONN-1179.jpg", className: "scale-[1.44] object-[center_17%] sm:scale-[1.34] sm:object-[center_18%] md:scale-100 md:object-top lg:object-[center_22%]" },
-  { src: "/ARONN-1162.jpg", className: "scale-[1.45] object-[center_18%] sm:scale-[1.35] sm:object-[center_20%] md:scale-100 md:object-top lg:object-[center_23%]" },
-  { src: "/ARONN-1223.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:scale-100 md:object-top lg:object-[center_23%]" },
-  { src: "/ARONN-1361.jpg", className: "scale-[1.42] object-[center_17%] sm:scale-[1.32] sm:object-[center_18%] md:scale-100 md:object-top lg:object-[center_22%]" },
-  { src: "/ARONN-1382.jpg", className: "scale-[1.45] object-[center_19%] sm:scale-[1.35] sm:object-[center_21%] md:scale-100 md:object-top lg:object-[center_23%]" },
-  { src: "/ARONN-1390.jpg", className: "scale-[1.44] object-[center_16%] sm:scale-[1.34] sm:object-[center_18%] md:scale-100 md:object-top lg:object-[center_22%]" },
-  { src: "/ARONN-1398.jpg", className: "scale-[1.43] object-[center_18%] sm:scale-[1.33] sm:object-[center_20%] md:scale-100 md:object-top lg:object-[center_23%]" },
-] as const;
+const HERO_IMAGE_BASE_CLASS = "origin-center object-cover";
+
+const HERO_FRAMES = HERO_PHOTOS.map((photo) => ({
+  src: photo.src,
+  objectPosition: photo.objectPosition,
+}));
 
 const HERO_ENTER_TRANSITIONS = [
   "hero-image-rise",
@@ -37,7 +30,31 @@ const HERO_ENTER_TRANSITIONS = [
 const HERO_ROTATE_MS = 6000;
 const HERO_TRANSITION_MS = 1250;
 
-const HERO_IMAGE_BASE_CLASS = "origin-center object-cover";
+function HeroPortrait({
+  src,
+  alt,
+  objectPosition,
+}: {
+  src: string;
+  alt: string;
+  objectPosition: string;
+}) {
+  return (
+    <div
+      className="relative h-[clamp(3.5rem,11vw,7.5rem)] w-[clamp(3.5rem,11vw,7.5rem)] shrink-0 overflow-hidden rounded-full border-2 border-white/80 shadow-[0_8px_28px_rgba(0,0,0,0.5)] ring-2 ring-[#D4AF37]/50"
+      aria-hidden={alt === ""}
+    >
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        className="object-cover"
+        style={{ objectPosition }}
+        sizes="(max-width: 768px) 18vw, 120px"
+      />
+    </div>
+  );
+}
 
 const NAV_LINKS = [
   { href: "/celebration", label: "Home" },
@@ -147,16 +164,16 @@ export default function HeroSection() {
           <div
             className={`${playfair.className} flex items-baseline gap-1 text-2xl font-black tracking-tight text-foreground sm:text-3xl md:text-[1.85rem] lg:text-4xl`}
           >
-            <span className="font-black">I</span>
+            <span className="font-black">M</span>
             <span className="translate-y-px text-base font-black text-[#800000] sm:text-lg md:text-xl lg:text-2xl">
               &amp;
             </span>
-            <span className="font-black">D</span>
+            <span className="font-black">T</span>
           </div>
           <span
             className={`${playfair.className} text-[0.62rem] font-extrabold uppercase tracking-[0.32em] text-foreground sm:text-[0.68rem] md:text-xs`}
           >
-            IDLoveStory
+            #TheOriakhiTakeover2026
           </span>
         </a>
 
@@ -245,7 +262,8 @@ export default function HeroSection() {
               src={HERO_FRAMES[visibleIndex].src}
               alt=""
               fill
-              className={`${HERO_IMAGE_BASE_CLASS} ${HERO_FRAMES[visibleIndex].className}`}
+              className={HERO_IMAGE_BASE_CLASS}
+              style={{ objectPosition: HERO_FRAMES[visibleIndex].objectPosition }}
               sizes="100vw"
               priority={visibleIndex === 0}
             />
@@ -259,7 +277,8 @@ export default function HeroSection() {
                 src={HERO_FRAMES[incomingIndex].src}
                 alt=""
                 fill
-                className={`${HERO_IMAGE_BASE_CLASS} ${HERO_FRAMES[incomingIndex].className}`}
+                className={HERO_IMAGE_BASE_CLASS}
+                style={{ objectPosition: HERO_FRAMES[incomingIndex].objectPosition }}
                 sizes="100vw"
               />
             </div>
@@ -280,11 +299,25 @@ export default function HeroSection() {
               The Beginning of Always
             </p>
 
-            <h1
-              className={`${playfair.className} max-w-[100vw] whitespace-nowrap px-1 text-center font-black leading-none tracking-tight text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)] text-[clamp(1.75rem,calc(0.75rem+4.2vw),7.25rem)]`}
-            >
-              Ibierebo <span className="font-black text-white/95">&amp;</span> Damilola
-            </h1>
+            <div className="flex w-full max-w-[min(100vw,58rem)] items-center justify-center gap-2 sm:gap-4 md:gap-7">
+              <HeroPortrait
+                src={HERO_PORTRAITS.bride.src}
+                alt={HERO_PORTRAITS.bride.alt}
+                objectPosition={HERO_PORTRAITS.bride.objectPosition}
+              />
+
+              <h1
+                className={`${playfair.className} min-w-0 flex-1 text-center font-black leading-none tracking-tight text-white drop-shadow-[0_4px_20px_rgba(0,0,0,0.45)] text-[clamp(1.35rem,calc(0.55rem+3.8vw),6.5rem)]`}
+              >
+                Motunrayo <span className="font-black text-white/95">&amp;</span> Thomson
+              </h1>
+
+              <HeroPortrait
+                src={HERO_PORTRAITS.groom.src}
+                alt={HERO_PORTRAITS.groom.alt}
+                objectPosition={HERO_PORTRAITS.groom.objectPosition}
+              />
+            </div>
 
             <div className="my-9 w-full max-w-xl md:my-11">
               <svg

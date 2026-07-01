@@ -5,14 +5,14 @@
 @source "../lib/**/*.{ts,tsx,js,jsx}";
 
 :root {
-  --background: #f4f8fc;
-  --foreground: #1f2a44;
-  --pink: #303c4c;
-  --pink-light: #314659;
-  --pink-soft: #e8c9d0;
-  --text-muted: #5f6876;
-  --accent-green: #e8c9d0;
-  --accent-gold: #D4AF37;
+  --background: #fffbf7;
+  --foreground: #3d4a2c;
+  --pink: #5c6b3c;
+  --pink-light: #718356;
+  --pink-soft: #f5d4bc;
+  --text-muted: #6b7560;
+  --accent-green: #f0c9a8;
+  --accent-gold: #c4a882;
 }
 
 html {
@@ -416,5 +416,36 @@ a[aria-disabled="true"] {
   .hero-orbit-spin-cw,
   .hero-orbit-spin-ccw {
     transform: none;
+  }
+}
+
+/* Landing rings — rainbow light travels around fixed dashed tracks */
+@keyframes landing-ring-light-travel {
+  to {
+    stroke-dashoffset: -100;
+  }
+}
+
+.landing-ring-light-beam {
+  opacity: 0.98;
+  stroke-dashoffset: 0;
+  will-change: stroke-dashoffset;
+  animation: landing-ring-light-travel var(--ring-dur, 8s) linear infinite;
+}
+
+.landing-ring-light-beam--reverse {
+  animation-direction: reverse;
+}
+
+.landing-ring-light-beam--soft {
+  opacity: 0.72;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .landing-ring-light-beam,
+  .landing-ring-light-beam--reverse,
+  .landing-ring-light-beam--soft {
+    animation: none;
+    stroke-dashoffset: 0;
   }
 }

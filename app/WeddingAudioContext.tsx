@@ -11,7 +11,7 @@ import {
   type ReactNode,
 } from "react";
 
-export const WEDDING_AUDIO_SRC = "/Morenikeji%20-%20Konstant.mp3";
+export const WEDDING_AUDIO_SRC = "/Tjan_-_Your_Smile_47vibez.net.mp3";
 
 /** Set from the landing page CTA so playback can start on `/celebration` (same user gesture chain). */
 export const WEDDING_PLAY_AFTER_NAV_KEY = "weddingPlayAfterNav";
@@ -19,6 +19,8 @@ export const WEDDING_PLAY_AFTER_NAV_KEY = "weddingPlayAfterNav";
 type WeddingAudioContextValue = {
   tryPlay: () => Promise<void>;
   needsUserPlay: boolean;
+  /** True only after the guest clicked Open Invitation on the landing page. */
+  musicEnabled: boolean;
 };
 
 const WeddingAudioContext = createContext<WeddingAudioContextValue | null>(null);
@@ -31,18 +33,24 @@ export function useWeddingAudio() {
   return ctx;
 }
 
-/** Shared audio for `/celebration` only — stays paused on `/` (landing gate). */
+/** Shared audio for `/celebration` only — stays paused until Open Invitation is clicked. */
 export function WeddingAudioProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const audioRef = useRef<HTMLAudioElement>(null);
   const [needsUserPlay, setNeedsUserPlay] = useState(false);
+  const [musicEnabled, setMusicEnabled] = useState(false);
   const isLanding = pathname === "/";
 
   const tryPlay = useCallback(() => {
     const el = audioRef.current;
     if (!el) return Promise.resolve();
     el.loop = true;
-    return el.play().then(() => setNeedsUserPlay(false));
+    return el.play().then(
+      () => setNeedsUserPlay(false),
+      () => {
+        setNeedsUserPlay(true);
+      },
+    );
   }, []);
 
   useEffect(() => {
@@ -71,28 +79,38 @@ export function WeddingAudioProvider({ children }: { children: ReactNode }) {
 
     if (isLanding) {
       el.pause();
+      setMusicEnabled(false);
       setNeedsUserPlay(false);
       return;
     }
+
+    let unlocked = false;
+    try {
+      unlocked = sessionStorage.getItem(WEDDING_PLAY_AFTER_NAV_KEY) === "1";
+      if (unlocked) {
+        sessionStorage.removeItem(WEDDING_PLAY_AFTER_NAV_KEY);
+      }
+    } catch {
+      /* storage blocked */
+    }
+
+    if (!unlocked) {
+      el.pause();
+      setMusicEnabled(false);
+      setNeedsUserPlay(false);
+      return;
+    }
+
+    setMusicEnabled(true);
 
     const attempt = () =>
       tryPlay().catch(() => {
         setNeedsUserPlay(true);
       });
 
-    try {
-      if (typeof window !== "undefined" && sessionStorage.getItem(WEDDING_PLAY_AFTER_NAV_KEY) === "1") {
-        sessionStorage.removeItem(WEDDING_PLAY_AFTER_NAV_KEY);
-        void tryPlay().catch(() => setNeedsUserPlay(true));
-      }
-    } catch {
-      /* storage blocked */
-    }
-
     attempt();
     const t1 = setTimeout(attempt, 150);
     const t2 = setTimeout(attempt, 600);
-    const t3 = setTimeout(attempt, 1500);
 
     const unlock = () => {
       attempt();
@@ -115,7 +133,6 @@ export function WeddingAudioProvider({ children }: { children: ReactNode }) {
     return () => {
       clearTimeout(t1);
       clearTimeout(t2);
-      clearTimeout(t3);
       document.removeEventListener("visibilitychange", onVis);
       document.removeEventListener("pointerdown", unlock);
       document.removeEventListener("touchstart", unlock);
@@ -124,7 +141,7 @@ export function WeddingAudioProvider({ children }: { children: ReactNode }) {
     };
   }, [isLanding, tryPlay]);
 
-  const value: WeddingAudioContextValue = { tryPlay, needsUserPlay };
+  const value: WeddingAudioContextValue = { tryPlay, needsUserPlay, musicEnabled };
 
   return (
     <WeddingAudioContext.Provider value={value}>
@@ -132,9 +149,12 @@ export function WeddingAudioProvider({ children }: { children: ReactNode }) {
         ref={audioRef}
         src={WEDDING_AUDIO_SRC}
         loop
-        preload="auto"
-        playsInline
+        preload="metadata"
         aria-hidden
+        onError={() => {
+          setNeedsUserPlay(false);
+          setMusicEnabled(false);
+        }}
       />
       {children}
     </WeddingAudioContext.Provider>
