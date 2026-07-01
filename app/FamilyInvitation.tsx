@@ -21,8 +21,8 @@ export default function FamilyInvitation() {
           className={`${playfair.className} text-foreground text-xl font-normal italic leading-relaxed md:text-2xl md:leading-relaxed lg:text-[1.65rem]`}
         >
           The families of{" "}
-          <span className="font-semibold not-italic">Mr. &amp; Mrs. Robinson Oriakhi</span> and{" "}
-          <span className="font-semibold not-italic">Mr. &amp; Mrs. Gbadamosi</span> invite you all
+          <span className="font-semibold not-italic">Mr. &amp; Mrs. Gbadamosi</span> and{" "}
+          <span className="font-semibold not-italic">Mr. &amp; Mrs. Robinson Oriakhi</span> invite you all
           to our children&apos;s wedding.
         </blockquote>
 

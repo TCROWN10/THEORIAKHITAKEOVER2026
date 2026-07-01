@@ -7,6 +7,7 @@ import FamilyInvitation from "../FamilyInvitation";
 import AboutTheCouple from "../AboutTheCouple";
 import ScrollReveal from "../ScrollReveal";
 import BackToTopButton from "../BackToTopButton";
+import HotelContacts from "../HotelContacts";
 import { type ReactNode } from "react";
 
 /** Full address for Maps — `encodeURIComponent` avoids broken `?q=` links */
@@ -375,35 +376,25 @@ export default function Home() {
             </h2>
 
             {/* Thin horizontal colour rules + labels (reference layout) */}
-            <div className="mt-5 grid grid-cols-2 gap-4 sm:grid-cols-4 sm:gap-6 md:gap-8">
+            <div className="mt-5 grid grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               <div className="flex min-w-0 flex-col items-center">
                 <div
                   className="h-2 w-full rounded-[2px] sm:h-2.5"
-                  style={{ backgroundColor: "#e9782e" }}
+                  style={{ backgroundColor: "#5c6b3c" }}
                   aria-hidden
                 />
                 <span className="mt-2 text-center font-[system-ui,-apple-system,sans-serif] text-sm font-medium capitalize text-foreground">
-                  Orange
-                </span>
-              </div>
-              <div className="flex min-w-0 flex-col items-center">
-                <div
-                  className="h-2 w-full rounded-[2px] border border-foreground/12 sm:h-2.5"
-                  style={{ backgroundColor: "#e4d5c4" }}
-                  aria-hidden
-                />
-                <span className="mt-2 text-center font-[system-ui,-apple-system,sans-serif] text-sm font-medium capitalize text-foreground">
-                  Beige
+                  Olive green
                 </span>
               </div>
               <div className="flex min-w-0 flex-col items-center">
                 <div
                   className="h-2 w-full rounded-[2px] sm:h-2.5"
-                  style={{ backgroundColor: "#0d8068" }}
+                  style={{ backgroundColor: "#f0c9a8" }}
                   aria-hidden
                 />
                 <span className="mt-2 text-center font-[system-ui,-apple-system,sans-serif] text-sm font-medium capitalize text-foreground">
-                  Emerald green
+                  Peach
                 </span>
               </div>
               <div className="flex min-w-0 flex-col items-center">
@@ -425,7 +416,7 @@ export default function Home() {
             </span>
           </div>
           <p className="text-foreground mt-4 text-center text-base font-light leading-relaxed">
-            Ladies: Flowing gowns or elegant dresses in orange, beige, emerald, or white
+            Ladies: Flowing gowns or elegant dresses in olive green, peach, or white
             <br />
             <span className="mt-1.5 block">
               Gentlemen: Suits or traditional attire in complementary colors
@@ -629,6 +620,10 @@ export default function Home() {
               </cite>
             </div>
           </blockquote>
+        </ScrollReveal>
+
+        <ScrollReveal className="mt-8 w-full max-w-4xl">
+          <HotelContacts />
         </ScrollReveal>
       </section>
 

@@ -91,7 +91,7 @@ function OrbitPhotoBubble({
       >
         <div className="absolute left-1/2 top-0 z-[6] -translate-x-1/2 -translate-y-1/2">
           <div
-            className={`relative shrink-0 overflow-hidden rounded-full border-[3px] bg-white shadow-md ${face}`}
+            className={`relative shrink-0 overflow-hidden rounded-full border-[3px] bg-transparent shadow-md ${face}`}
             style={
               {
                 width: bubbleSide,
@@ -110,7 +110,7 @@ function OrbitPhotoBubble({
               src={src}
               alt={alt}
               fill
-              className="object-cover"
+              className="scale-110 object-cover"
               sizes="72px"
             />
           </div>
@@ -137,7 +137,7 @@ export default function InvitationLanding() {
     <section
       className={`relative flex min-h-dvh flex-col items-center justify-center overflow-hidden bg-[#f5f5f0] px-2 py-10 sm:px-4 md:px-8 ${ui.className}`}
     >
-      <div className="relative mx-auto aspect-square w-full max-w-[min(100vw,1040px)] overflow-hidden">
+      <div className="relative mx-auto aspect-square w-full max-w-[min(92vw,1040px)] -translate-y-7 origin-center sm:max-w-[min(100vw,1040px)] sm:translate-y-0">
         <svg
           className="pointer-events-none absolute inset-0 z-[1] h-full w-full"
           viewBox={`0 0 ${VIEWBOX} ${VIEWBOX}`}
