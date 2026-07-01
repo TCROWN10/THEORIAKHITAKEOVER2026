@@ -412,14 +412,14 @@ export default function Home() {
 
           <div className="mx-auto mt-6 max-w-xl rounded-xl bg-foreground/4 py-2 px-3 text-center">
             <span className="text-foreground text-base font-medium">
-              Dress code: Formal / Semi-formal
+              Dress code: Formal and traditional
             </span>
           </div>
           <p className="text-foreground mt-4 text-center text-base font-light leading-relaxed">
-            Ladies: Flowing gowns or elegant dresses in olive green, peach, or white
+            Ladies: Elegant outfits in olive green and peach
             <br />
             <span className="mt-1.5 block">
-              Gentlemen: Suits or traditional attire in complementary colors
+              Gentlemen: Traditional attire in complementary colors
             </span>
           </p>
         </div>
