@@ -260,6 +260,21 @@ export default function InvitationLanding() {
           </div>
         </div>
       </div>
+
+      <div
+        className="mx-auto mt-2 max-w-sm rounded-xl border border-[#e85d6f]/45 bg-[#fce4e8]/90 px-4 py-3 text-center shadow-sm sm:mt-4"
+        role="note"
+      >
+        <p className="text-sm font-bold tracking-wide text-[#c44556]">
+          No Access Card — No Entry
+        </p>
+        <p className="mt-1 text-xs font-semibold text-foreground/75">
+        Kindly contact the organizer for your access card.
+        </p>
+        <p className="mt-1 text-xs font-semibold text-foreground/75">
+          Thank you
+        </p>
+      </div>
     </section>
   );
 }
